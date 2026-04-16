@@ -1,7 +1,7 @@
 # ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/render?type=soft&color=00c4b8&height=200&section=header&text=DARKSATHILI&fontSize=70&fontAlignY=40&animation=twinkling&fontColor=ffffff" alt="Header Sci-Fi" />
+ ![DARKSATHILI](https://capsule-render.vercel.app/render?type=soft&color=00c4b8&height=200&section=header&text=DARKSATHILI&fontSize=70&animation=twinkling&fontColor=ffffff)
 </p>
 
 <p align="center">
