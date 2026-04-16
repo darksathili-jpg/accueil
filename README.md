@@ -1,7 +1,7 @@
 # ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
 
 <p align="center">
-  [interdite.jpg](https://github.com/account)
+  <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="800">
 </p>
 
 <p align="center">
