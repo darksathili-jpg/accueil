@@ -1,7 +1,7 @@
 # ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
 
 <p align="center">
-  <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="800">
+  <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="300">
 </p>
 
 <p align="center">
