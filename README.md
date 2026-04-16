@@ -1,14 +1,14 @@
 <div align="center">
 
-```
-╔══════════════════════════════════════════════════════════════╗
-║              ⬡  SECTOR 7 — ARCHIVES ACTIVES  ⬡              ║
-║          Intelligence Artificielle · Algorithmes            ║
-║              Exploration Numérique Avancée                  ║
-╚══════════════════════════════════════════════════════════════╝
-```
-
 <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="640"/>
+
+<br/>
+
+# ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
+
+**Intelligence Artificielle &nbsp;·&nbsp; Algorithmes &nbsp;·&nbsp; Exploration Numérique**
+
+*"Archives des expériences computationnelles et transmissions de code de haute fidélité."*
 
 <br/>
 
@@ -23,26 +23,11 @@
 
 ## 📡 TRANSMISSION ENTRANTE
 
-> *"Archives des expériences computationnelles et transmissions de code de haute fidélité."*
+Bienvenue dans le **Secteur 7**. Je suis un explorateur numérique à l'intersection de l'**intelligence artificielle** et du **développement logiciel** — prototypage d'algorithmes, interfaces futuristes, automatisation, expérimentations IA.
 
-Bienvenue dans le **Secteur 7**. Je suis un explorateur numérique à l'intersection de l'**intelligence artificielle** et du **développement logiciel**. Ce dépôt centralise mes missions actives : prototypage d'algorithmes, interfaces futuristes, automatisation, et expérimentations IA.
-
-```
-IDENTIFIANT  : DARKSATHILI
-SECTEUR      : 7 — ARCHIVES COMPUTATIONNELLES
-STATUT       : ACTIF / EN MISSION
-SIGNAL       : darksathi59@gmail.com
-```
-
----
-
-## 🎯 DIRECTIVES EN COURS
-
-```yaml
-mission_principale  : Perfectionner les modèles d'IA générative & l'architecture système
-objectif_secondaire : Développement d'outils d'automatisation et de visualisation de données
-protocole_actif     : Exploration des LLMs · Agents autonomes · Interfaces homme-machine
-```
+- **🔭 Mission active :** Perfectionner les modèles d'IA générative et l'architecture système
+- **🛸 Stack principal :** Python, TypeScript, Rust, environnements Cloud
+- **☄️ Projets spéciaux :** Outils d'automatisation et visualisation de données avancée
 
 ---
 
@@ -76,7 +61,7 @@ protocole_actif     : Exploration des LLMs · Agents autonomes · Interfaces hom
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=darksathili-jpg&show_icons=true&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&icon_color=c9a96e&border_color=00c4b8&hide_border=false&rank_icon=github" width="49%" alt="GitHub Stats"/>
+<img src="https://github-readme-stats.vercel.app/api?username=darksathili-jpg&show_icons=true&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&icon_color=c9a96e&border_color=00c4b8&rank_icon=github" width="49%" alt="GitHub Stats"/>
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=darksathili-jpg&layout=compact&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&border_color=00c4b8" width="49%" alt="Top Languages"/>
 
 <br/><br/>
@@ -87,19 +72,7 @@ protocole_actif     : Exploration des LLMs · Agents autonomes · Interfaces hom
 
 ---
 
-## 🚀 MISSIONS RÉCENTES
-
-> Les dépôts les plus actifs du Secteur 7 — mis à jour automatiquement.
-
-<div align="center">
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=darksathili-jpg&repo=darksathili-jpg.github.io&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&icon_color=c9a96e&border_color=00c4b8)](https://github.com/darksathili-jpg/darksathili-jpg.github.io)
-
-</div>
-
----
-
-## 🌐 PROTOCOLES DE CONNEXION
+## 🔗 PROTOCOLES DE CONNEXION
 
 <div align="center">
 
@@ -109,19 +82,9 @@ protocole_actif     : Exploration des LLMs · Agents autonomes · Interfaces hom
 | 📬 **Email** | [darksathi59@gmail.com](mailto:darksathi59@gmail.com) |
 | 🐙 **GitHub** | [github.com/darksathili-jpg](https://github.com/darksathili-jpg) |
 
-</div>
-
----
-
-<div align="center">
-
-```
-[ SECTEUR 7 — TRANSMISSION TERMINÉE ]
-```
+<br/>
 
 ![System Active](https://img.shields.io/badge/Système-ACTIF-00ff9d?style=plastic)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=darksathili-jpg.darksathili-jpg&color=00c4b8)
-
-*Toute tentative d'accès non autorisé sera journalisée et traitée par les algorithmes de surveillance du Secteur 7.*
 
 </div>
