@@ -61,12 +61,12 @@ Bienvenue dans le **Secteur 7**. Je suis un explorateur numérique à l'intersec
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=darksathili-jpg&show_icons=true&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&icon_color=c9a96e&border_color=00c4b8&rank_icon=github" width="49%" alt="GitHub Stats"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=darksathili-jpg&layout=compact&theme=tokyonight&bg_color=050e12&title_color=00c4b8&text_color=8eb8c4&border_color=00c4b8" width="49%" alt="Top Languages"/>
+<img src="https://github-readme-stats.vercel.app/api?username=darksathili-jpg&show_icons=true&theme=tokyonight&bg_color=00000000&title_color=00c4b8&text_color=8eb8c4&icon_color=c9a96e&hide_border=true&rank_icon=github" width="49%" alt="GitHub Stats"/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=darksathili-jpg&layout=compact&theme=tokyonight&bg_color=00000000&title_color=00c4b8&text_color=8eb8c4&hide_border=true" width="49%" alt="Top Languages"/>
 
 <br/><br/>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=darksathili-jpg&theme=tokyonight&background=050e12&ring=00c4b8&fire=c9a96e&currStreakLabel=00c4b8&border=00c4b8" width="60%" alt="Streak Stats"/>
+<img src="https://streak-stats.demolab.com/?user=darksathili-jpg&theme=tokyonight&background=00000000&ring=00c4b8&fire=c9a96e&currStreakLabel=00c4b8&hide_border=true" width="60%" alt="Streak Stats"/>
 
 </div>
 
