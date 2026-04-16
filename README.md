@@ -1,7 +1,7 @@
 # ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
 
 <p align="center">
-  <img src="header.png" alt="DARKSATHILI SECTOR 7" width="800">
+  [header.png](https://github.com/account)
 </p>
 
 <p align="center">
