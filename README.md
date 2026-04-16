@@ -50,7 +50,7 @@ Bienvenue dans le **Secteur 7**. Je suis un explorateur numérique passionné pa
 
 * **Portfolio :** [Accéder aux Archives Sector 7](https://votre-lien-portfolio.com)
 * **LinkedIn :** [Transmission Professionnelle](https://linkedin.com/in/votre-profil)
-* **Email :** `contact@darksathili.com` (Protocolisé)
+* **Email :** `darksathi59@gmail.com` (Protocolisé)
 
 <p align="right">
   <img src="https://img.shields.io/badge/System-Active-00ff9d?style=plastic" alt="System Active" />
