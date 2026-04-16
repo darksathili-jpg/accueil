@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="640"/>
+<img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="300"/>
 
 <br/>
 
