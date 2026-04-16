@@ -1,7 +1,7 @@
 # ⬡ DARKSATHILI — SECTOR 7 ARCHIVES ⬡
 
 <p align="center">
-  <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="300">
+  <img src="interdite.jpg" alt="DARKSATHILI SECTOR 7" width="600">
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/followers/darksathili-jpg?style=for-the-badge&color=00c4b8&labelColor=050e12" alt="Followers" />
   <img src="https://img.shields.io/github/stars/darksathili-jpg?style=for-the-badge&color=c9a96e&labelColor=050e12" alt="Stars" />
-  <img src="https://img.shields.io/github/repo-count/darksathili-jpg?style=for-the-badge&color=0a9fa6&labelColor=050e12" alt="Repo Count" />
+  <img src="https://img.shields.io/badge/SECTOR-7_ACTIVE-0a9fa6?style=for-the-badge&labelColor=050e12" alt="Status" />
 </p>
 
 ---
@@ -48,8 +48,7 @@ Bienvenue dans le **Secteur 7**. Je suis un explorateur numérique passionné pa
 
 ### 🔗 CONNEXION
 
-* **Portfolio :** [Accéder aux Archives Sector 7](https://votre-lien-portfolio.com)
-* **LinkedIn :** [Transmission Professionnelle](https://linkedin.com/in/votre-profil)
+* **Portfolio :** [Accéder aux Archives Sector 7](https://darksathili-jpg.github.io/)
 * **Email :** `darksathi59@gmail.com` (Protocolisé)
 
 <p align="right">
