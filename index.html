@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DARKSATHILI — SECTOR 7 ARCHIVES</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,600;1,300&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --teal:       #00c4b8;
-      --teal-dark:  #007a73;
-      --teal-deep:  #003d3a;
-      --sky:        #0a9fa6;
-      --sky-light:  #43d6df;
-      --sand:       #c9a96e;
+      --teal: #00c4b8;
+      --teal-dark: #007a73;
+      --teal-deep: #003d3a;
+      --sky: #0a9fa6;
+      --sky-light: #43d6df;
+      --sand: #c9a96e;
       --sand-light: #e8c98a;
-      --rust:       #b85a2a;
-      --chrome:     #8eb8c4;
+      --rust: #b85a2a;
+      --chrome: #8eb8c4;
       --chrome-dim: #4a7585;
-      --dark:       #050e12;
-      --star:       #d4f1f4;
+      --dark: #050e12;
+      --star: #d4f1f4;
       --green-glow: #00ff9d;
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--dark);
@@ -50,13 +61,11 @@
       position: fixed;
       inset: 0;
       z-index: 1;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0,0,0,0.08) 3px,
-        rgba(0,0,0,0.08) 4px
-      );
+      background: repeating-linear-gradient(to bottom,
+          transparent 0px,
+          transparent 3px,
+          rgba(0, 0, 0, 0.08) 3px,
+          rgba(0, 0, 0, 0.08) 4px);
       pointer-events: none;
     }
 
@@ -79,13 +88,14 @@
     /* ── HORIZON GLOW ── */
     .horizon {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 260px;
       background: linear-gradient(to top,
-        rgba(200,150,60,0.18) 0%,
-        rgba(0,100,100,0.12) 40%,
-        transparent 100%
-      );
+          rgba(200, 150, 60, 0.18) 0%,
+          rgba(0, 100, 100, 0.12) 40%,
+          transparent 100%);
       pointer-events: none;
       z-index: 1;
     }
@@ -105,52 +115,88 @@
     /* Animated UFO */
     .ufo-wrap {
       position: absolute;
-      top: 80px; left: 50%;
+      top: 80px;
+      left: 50%;
       transform: translateX(-50%);
       animation: ufoFloat 6s ease-in-out infinite;
       filter: drop-shadow(0 0 18px var(--teal)) drop-shadow(0 0 40px var(--sky));
     }
+
     @keyframes ufoFloat {
-      0%, 100% { transform: translateX(-50%) translateY(0)    rotate(-1deg); }
-      50%       { transform: translateX(-50%) translateY(-18px) rotate(1deg);  }
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-18px) rotate(1deg);
+      }
     }
 
     .ufo {
       width: 160px;
       animation: ufoSpin 20s linear infinite;
     }
+
     @keyframes ufoSpin {
-      from { filter: hue-rotate(0deg);   }
-      to   { filter: hue-rotate(360deg); }
+      from {
+        filter: hue-rotate(0deg);
+      }
+
+      to {
+        filter: hue-rotate(360deg);
+      }
     }
 
     /* Robot silhouette (CSS-drawn) */
     .robot-silhouette {
       position: absolute;
-      bottom: 0; left: 60px;
-      width: 90px; height: 200px;
+      bottom: 0;
+      left: 60px;
+      width: 90px;
+      height: 200px;
       pointer-events: none;
       animation: robotBob 4s ease-in-out infinite;
     }
+
     @keyframes robotBob {
-      0%, 100% { transform: translateY(0);    }
-      50%       { transform: translateY(-8px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     /* Planet decoration */
     .planet-deco {
       position: absolute;
-      top: 60px; right: 80px;
-      width: 80px; height: 80px;
+      top: 60px;
+      right: 80px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, var(--chrome), var(--chrome-dim), var(--teal-deep));
-      box-shadow: 0 0 30px rgba(0,196,184,0.3), inset -10px -6px 20px rgba(0,0,0,0.6);
+      box-shadow: 0 0 30px rgba(0, 196, 184, 0.3), inset -10px -6px 20px rgba(0, 0, 0, 0.6);
       animation: planetRotate 20s linear infinite;
     }
+
     @keyframes planetRotate {
-      from { box-shadow: 0 0 30px rgba(0,196,184,0.3), inset -10px -6px 20px rgba(0,0,0,0.6); }
-      50%  { box-shadow: 0 0 50px rgba(0,196,184,0.5), inset -10px -6px 20px rgba(0,0,0,0.6); }
-      to   { box-shadow: 0 0 30px rgba(0,196,184,0.3), inset -10px -6px 20px rgba(0,0,0,0.6); }
+      from {
+        box-shadow: 0 0 30px rgba(0, 196, 184, 0.3), inset -10px -6px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      50% {
+        box-shadow: 0 0 50px rgba(0, 196, 184, 0.5), inset -10px -6px 20px rgba(0, 0, 0, 0.6);
+      }
+
+      to {
+        box-shadow: 0 0 30px rgba(0, 196, 184, 0.3), inset -10px -6px 20px rgba(0, 0, 0, 0.6);
+      }
     }
 
     /* Title */
@@ -172,9 +218,9 @@
       line-height: 1;
       color: var(--sand-light);
       text-shadow:
-        0 0 10px rgba(201,169,110,0.8),
-        0 0 40px rgba(201,169,110,0.4),
-        0 0 80px rgba(0,196,184,0.2);
+        0 0 10px rgba(201, 169, 110, 0.8),
+        0 0 40px rgba(201, 169, 110, 0.4),
+        0 0 80px rgba(0, 196, 184, 0.2);
       letter-spacing: 0.08em;
       margin-bottom: 8px;
       animation: fadeSlide 1s 0.4s both;
@@ -205,7 +251,10 @@
 
     .hero-cta {
       margin-top: 40px;
-      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
       animation: fadeSlide 1s 1s both;
     }
 
@@ -218,60 +267,87 @@
       padding: 12px 28px;
       border: 1px solid var(--teal);
       color: var(--teal);
-      background: rgba(0,196,184,0.07);
+      background: rgba(0, 196, 184, 0.07);
       transition: all 0.3s;
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     }
+
     .btn:hover {
       background: var(--teal);
       color: var(--dark);
-      box-shadow: 0 0 20px rgba(0,196,184,0.5);
+      box-shadow: 0 0 20px rgba(0, 196, 184, 0.5);
       transform: translateY(-2px);
     }
+
     .btn.primary {
-      background: rgba(201,169,110,0.12);
+      background: rgba(201, 169, 110, 0.12);
       border-color: var(--sand);
       color: var(--sand-light);
     }
+
     .btn.primary:hover {
       background: var(--sand);
       color: var(--dark);
-      box-shadow: 0 0 20px rgba(201,169,110,0.5);
+      box-shadow: 0 0 20px rgba(201, 169, 110, 0.5);
     }
 
     @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0);    }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Scroll indicator */
     .scroll-indicator {
       position: absolute;
-      bottom: 30px; left: 50%;
+      bottom: 30px;
+      left: 50%;
       transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.3em;
       color: var(--chrome-dim);
       animation: scrollPulse 2s ease-in-out infinite;
     }
+
     .scroll-indicator::after {
       content: '';
-      width: 1px; height: 40px;
+      width: 1px;
+      height: 40px;
       background: linear-gradient(to bottom, var(--teal), transparent);
     }
+
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; }
-      50%       { opacity: 1;   }
+
+      0%,
+      100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     /* ── DIVIDER ── */
     .section-divider {
-      display: flex; align-items: center; gap: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
       padding: 0 40px;
       margin-bottom: 60px;
     }
+
     .section-divider::before,
     .section-divider::after {
       content: '';
@@ -279,6 +355,7 @@
       height: 1px;
       background: linear-gradient(to right, transparent, var(--teal-dark), transparent);
     }
+
     .section-label {
       font-family: 'Orbitron', sans-serif;
       font-size: 0.7rem;
@@ -297,23 +374,30 @@
 
     /* Stats bar */
     .stats-bar {
-      display: flex; gap: 40px; flex-wrap: wrap;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
       margin-bottom: 60px;
       padding: 20px 30px;
-      border: 1px solid rgba(0,196,184,0.2);
-      background: rgba(0,196,184,0.03);
+      border: 1px solid rgba(0, 196, 184, 0.2);
+      background: rgba(0, 196, 184, 0.03);
       clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
     }
+
     .stat-item {
-      display: flex; flex-direction: column; gap: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
+
     .stat-num {
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
       font-weight: 700;
       color: var(--teal);
-      text-shadow: 0 0 15px rgba(0,196,184,0.5);
+      text-shadow: 0 0 15px rgba(0, 196, 184, 0.5);
     }
+
     .stat-label {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.65rem;
@@ -324,47 +408,62 @@
 
     /* Search/filter bar */
     .filter-bar {
-      display: flex; gap: 12px; flex-wrap: wrap;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-bottom: 40px;
     }
+
     .filter-input {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.8rem;
       letter-spacing: 0.1em;
-      background: rgba(0,196,184,0.05);
-      border: 1px solid rgba(0,196,184,0.3);
+      background: rgba(0, 196, 184, 0.05);
+      border: 1px solid rgba(0, 196, 184, 0.3);
       color: var(--teal);
       padding: 10px 18px;
       outline: none;
-      flex: 1; min-width: 200px;
+      flex: 1;
+      min-width: 200px;
       clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .filter-input::placeholder { color: var(--chrome-dim); }
+
+    .filter-input::placeholder {
+      color: var(--chrome-dim);
+    }
+
     .filter-input:focus {
       border-color: var(--teal);
-      box-shadow: 0 0 15px rgba(0,196,184,0.2);
+      box-shadow: 0 0 15px rgba(0, 196, 184, 0.2);
     }
+
     .lang-filter {
-      display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
     }
+
     .lang-btn {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       padding: 6px 14px;
-      border: 1px solid rgba(0,196,184,0.25);
+      border: 1px solid rgba(0, 196, 184, 0.25);
       background: transparent;
       color: var(--chrome-dim);
       cursor: pointer;
       transition: all 0.2s;
       clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
     }
-    .lang-btn:hover, .lang-btn.active {
+
+    .lang-btn:hover,
+    .lang-btn.active {
       border-color: var(--teal);
       color: var(--teal);
-      background: rgba(0,196,184,0.1);
+      background: rgba(0, 196, 184, 0.1);
     }
 
     /* Grid */
@@ -379,10 +478,9 @@
       position: relative;
       padding: 28px;
       background: linear-gradient(135deg,
-        rgba(0,61,58,0.6) 0%,
-        rgba(5,14,18,0.9) 100%
-      );
-      border: 1px solid rgba(0,196,184,0.2);
+          rgba(0, 61, 58, 0.6) 0%,
+          rgba(5, 14, 18, 0.9) 100%);
+      border: 1px solid rgba(0, 196, 184, 0.2);
       clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
       transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       text-decoration: none;
@@ -395,47 +493,69 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(135deg,
-        rgba(0,196,184,0.08) 0%,
-        transparent 60%
-      );
+          rgba(0, 196, 184, 0.08) 0%,
+          transparent 60%);
       opacity: 0;
       transition: opacity 0.35s;
     }
-    .repo-card:hover::before { opacity: 1; }
+
+    .repo-card:hover::before {
+      opacity: 1;
+    }
 
     /* Scanline shimmer on hover */
     .repo-card::after {
       content: '';
       position: absolute;
-      top: -100%; left: 0; right: 0;
+      top: -100%;
+      left: 0;
+      right: 0;
       height: 40%;
-      background: linear-gradient(to bottom, transparent, rgba(0,196,184,0.06), transparent);
+      background: linear-gradient(to bottom, transparent, rgba(0, 196, 184, 0.06), transparent);
       transition: top 0.6s;
     }
-    .repo-card:hover::after { top: 200%; }
+
+    .repo-card:hover::after {
+      top: 200%;
+    }
 
     .repo-card:hover {
       border-color: var(--teal);
       transform: translateY(-4px);
       box-shadow:
-        0 0 20px rgba(0,196,184,0.15),
-        0 0 60px rgba(0,196,184,0.05),
-        inset 0 1px 0 rgba(0,196,184,0.1);
+        0 0 20px rgba(0, 196, 184, 0.15),
+        0 0 60px rgba(0, 196, 184, 0.05),
+        inset 0 1px 0 rgba(0, 196, 184, 0.1);
     }
 
     /* Corner decoration */
-    .corner-tl, .corner-br {
+    .corner-tl,
+    .corner-br {
       position: absolute;
-      width: 16px; height: 16px;
+      width: 16px;
+      height: 16px;
       border-color: var(--teal);
       border-style: solid;
       opacity: 0.5;
       transition: opacity 0.3s;
     }
-    .corner-tl { top: 6px; left: 6px; border-width: 1px 0 0 1px; }
-    .corner-br { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+
+    .corner-tl {
+      top: 6px;
+      left: 6px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .corner-br {
+      bottom: 6px;
+      right: 6px;
+      border-width: 0 1px 1px 0;
+    }
+
     .repo-card:hover .corner-tl,
-    .repo-card:hover .corner-br { opacity: 1; }
+    .repo-card:hover .corner-br {
+      opacity: 1;
+    }
 
     .repo-num {
       font-family: 'Share Tech Mono', monospace;
@@ -444,6 +564,7 @@
       color: var(--chrome-dim);
       margin-bottom: 12px;
     }
+
     .repo-name {
       font-family: 'Orbitron', sans-serif;
       font-weight: 700;
@@ -453,6 +574,7 @@
       margin-bottom: 10px;
       line-height: 1.3;
     }
+
     .repo-desc {
       font-family: 'Exo 2', sans-serif;
       font-style: italic;
@@ -464,30 +586,43 @@
       min-height: 52px;
       opacity: 0.8;
     }
+
     .repo-meta {
-      display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
-      border-top: 1px solid rgba(0,196,184,0.12);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-top: 1px solid rgba(0, 196, 184, 0.12);
       padding-top: 14px;
     }
+
     .repo-lang {
-      display: flex; align-items: center; gap: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem;
       letter-spacing: 0.1em;
       color: var(--teal);
     }
+
     .lang-dot {
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       display: inline-block;
       box-shadow: 0 0 6px currentColor;
     }
+
     .repo-stars {
-      display: flex; align-items: center; gap: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.7rem;
       color: var(--chrome-dim);
     }
+
     .repo-updated {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.62rem;
@@ -506,22 +641,35 @@
       letter-spacing: 0.3em;
       grid-column: 1/-1;
     }
+
     .loading-dots::after {
       content: '';
-      animation: dots 1.5s steps(4,end) infinite;
+      animation: dots 1.5s steps(4, end) infinite;
     }
+
     @keyframes dots {
-      0%  { content: ''; }
-      25% { content: '.'; }
-      50% { content: '..'; }
-      75% { content: '...'; }
+      0% {
+        content: '';
+      }
+
+      25% {
+        content: '.';
+      }
+
+      50% {
+        content: '..';
+      }
+
+      75% {
+        content: '...';
+      }
     }
 
     /* Error state */
     .error-state {
       grid-column: 1/-1;
-      border: 1px solid rgba(184,90,42,0.4);
-      background: rgba(184,90,42,0.05);
+      border: 1px solid rgba(184, 90, 42, 0.4);
+      background: rgba(184, 90, 42, 0.05);
       padding: 30px;
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
       font-family: 'Share Tech Mono', monospace;
@@ -533,31 +681,70 @@
     /* Pinned badge */
     .badge-fork {
       position: absolute;
-      top: 12px; right: 16px;
+      top: 12px;
+      right: 16px;
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.55rem;
       letter-spacing: 0.2em;
       padding: 3px 8px;
-      background: rgba(184,90,42,0.15);
-      border: 1px solid rgba(184,90,42,0.3);
+      background: rgba(184, 90, 42, 0.15);
+      border: 1px solid rgba(184, 90, 42, 0.3);
       color: var(--rust);
       text-transform: uppercase;
     }
 
     /* Language color map (CSS) */
-    .lang-python      { color: #3572A5; }
-    .lang-javascript  { color: #f1e05a; }
-    .lang-typescript  { color: #2b7489; }
-    .lang-rust        { color: #dea584; }
-    .lang-go          { color: #00ADD8; }
-    .lang-c           { color: #555555; }
-    .lang-cpp         { color: #f34b7d; }
-    .lang-java        { color: #b07219; }
-    .lang-ruby        { color: #701516; }
-    .lang-shell       { color: #89e051; }
-    .lang-html        { color: #e34c26; }
-    .lang-css         { color: #563d7c; }
-    .lang-default     { color: var(--chrome-dim); }
+    .lang-python {
+      color: #3572A5;
+    }
+
+    .lang-javascript {
+      color: #f1e05a;
+    }
+
+    .lang-typescript {
+      color: #2b7489;
+    }
+
+    .lang-rust {
+      color: #dea584;
+    }
+
+    .lang-go {
+      color: #00ADD8;
+    }
+
+    .lang-c {
+      color: #555555;
+    }
+
+    .lang-cpp {
+      color: #f34b7d;
+    }
+
+    .lang-java {
+      color: #b07219;
+    }
+
+    .lang-ruby {
+      color: #701516;
+    }
+
+    .lang-shell {
+      color: #89e051;
+    }
+
+    .lang-html {
+      color: #e34c26;
+    }
+
+    .lang-css {
+      color: #563d7c;
+    }
+
+    .lang-default {
+      color: var(--chrome-dim);
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -568,15 +755,25 @@
       letter-spacing: 0.3em;
       color: var(--chrome-dim);
       opacity: 0.5;
-      position: relative; z-index: 2;
+      position: relative;
+      z-index: 2;
     }
-    footer a { color: var(--teal); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+
+    footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     /* ── TERRAIN / BOTTOM RIDGE ── */
     .terrain {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 80px;
       pointer-events: none;
       z-index: 1;
@@ -584,17 +781,31 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
-      .repos-section { padding: 0 20px 80px; }
-      .hero { padding: 100px 20px 100px; }
-      .robot-silhouette, .planet-deco { display: none; }
-      .stats-bar { gap: 24px; }
+      .repos-section {
+        padding: 0 20px 80px;
+      }
+
+      .hero {
+        padding: 100px 20px 100px;
+      }
+
+      .robot-silhouette,
+      .planet-deco {
+        display: none;
+      }
+
+      .stats-bar {
+        gap: 24px;
+      }
     }
 
     /* ── COMET ── */
     .comet {
       position: fixed;
-      top: 0; left: 0;
-      width: 2px; height: 80px;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 80px;
       background: linear-gradient(to bottom, transparent, var(--teal-dark), var(--teal), white);
       transform-origin: top center;
       pointer-events: none;
@@ -602,391 +813,403 @@
       z-index: 1;
     }
 
-    .portrait{
-      width:max(40%, 300px);
+    .portrait {
+      width: max(40%, 300px);
       margin-top: 40px;
-      filter: grayscale(0.5) contrast(0.8) brightness(0.7) drop-shadow(0 0 10px var(--sand-light));
+      /**filter: grayscale(0.2) contrast(0.8) brightness(0.9) drop-shadow(0 0 10px var(--sand-light));**/
       border-radius: 2%;
     }
+
   </style>
 </head>
+
 <body>
 
-<canvas id="starfield"></canvas>
-<div class="horizon"></div>
-<svg class="terrain" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0,80 L0,55 Q60,30 140,50 Q220,68 300,40 Q400,10 500,38 Q580,58 640,30 Q720,5 820,35 Q900,55 980,20 Q1060,0 1140,28 Q1220,50 1300,32 Q1380,18 1440,40 L1440,80 Z" fill="rgba(10,159,166,0.06)"/>
-  <path d="M0,80 L0,65 Q80,55 180,62 Q280,68 360,55 Q440,42 540,60 Q640,75 720,58 Q800,42 900,62 Q1000,78 1100,65 Q1200,52 1300,68 Q1380,78 1440,70 L1440,80 Z" fill="rgba(201,169,110,0.06)"/>
-</svg>
+  <canvas id="starfield"></canvas>
+  <div class="horizon"></div>
+  <svg class="terrain" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M0,80 L0,55 Q60,30 140,50 Q220,68 300,40 Q400,10 500,38 Q580,58 640,30 Q720,5 820,35 Q900,55 980,20 Q1060,0 1140,28 Q1220,50 1300,32 Q1380,18 1440,40 L1440,80 Z"
+      fill="rgba(10,159,166,0.06)" />
+    <path
+      d="M0,80 L0,65 Q80,55 180,62 Q280,68 360,55 Q440,42 540,60 Q640,75 720,58 Q800,42 900,62 Q1000,78 1100,65 Q1200,52 1300,68 Q1380,78 1440,70 L1440,80 Z"
+      fill="rgba(201,169,110,0.06)" />
+  </svg>
 
-<!-- COMETS (JS will animate these) -->
-<div class="comet" id="comet1"></div>
-<div class="comet" id="comet2"></div>
+  <!-- COMETS (JS will animate these) -->
+  <div class="comet" id="comet1"></div>
+  <div class="comet" id="comet2"></div>
 
-<div class="wrapper">
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="hero">
+  <div class="wrapper">
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero">
 
-    <!-- UFO SVG -->
-    <div class="ufo-wrap">
-      <svg class="ufo" viewBox="0 0 160 70" xmlns="http://www.w3.org/2000/svg">
-        <!-- Beam -->
+      <!-- UFO SVG -->
+      <div class="ufo-wrap">
+        <svg class="ufo" viewBox="0 0 160 70" xmlns="http://www.w3.org/2000/svg">
+          <!-- Beam -->
+          <defs>
+            <radialGradient id="beamG" cx="50%" cy="0%" r="60%">
+              <stop offset="0%" stop-color="#00c4b8" stop-opacity="0.5" />
+              <stop offset="100%" stop-color="#00c4b8" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="domeG" cx="40%" cy="30%" r="60%">
+              <stop offset="0%" stop-color="#a0e8ee" />
+              <stop offset="100%" stop-color="#007a73" />
+            </radialGradient>
+            <radialGradient id="bodyG" cx="50%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#8eb8c4" />
+              <stop offset="100%" stop-color="#2a5060" />
+            </radialGradient>
+          </defs>
+          <!-- tractor beam -->
+          <polygon points="68,55 92,55 110,80 50,80" fill="url(#beamG)" />
+          <!-- main body -->
+          <ellipse cx="80" cy="50" rx="60" ry="14" fill="url(#bodyG)" />
+          <ellipse cx="80" cy="50" rx="60" ry="14" fill="none" stroke="rgba(0,196,184,0.5)" stroke-width="0.8" />
+          <!-- rim lights -->
+          <circle cx="40" cy="52" r="3" fill="#00ff9d" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.8s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="60" cy="55" r="3" fill="#00c4b8" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.1s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="80" cy="57" r="3" fill="#43d6df" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.3;0.9" dur="0.7s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="100" cy="55" r="3" fill="#00ff9d" opacity="0.7">
+            <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="120" cy="52" r="3" fill="#00c4b8" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;0.1;0.8" dur="0.9s" repeatCount="indefinite" />
+          </circle>
+          <!-- dome -->
+          <ellipse cx="80" cy="40" rx="26" ry="18" fill="url(#domeG)" opacity="0.9" />
+          <ellipse cx="73" cy="34" rx="6" ry="4" fill="rgba(255,255,255,0.3)" transform="rotate(-20,73,34)" />
+        </svg>
+      </div>
+
+      <!-- CSS Robot silhouette -->
+      <svg class="robot-silhouette" viewBox="0 0 90 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="beamG" cx="50%" cy="0%" r="60%">
-            <stop offset="0%" stop-color="#00c4b8" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#00c4b8" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="domeG" cx="40%" cy="30%" r="60%">
-            <stop offset="0%" stop-color="#a0e8ee"/>
-            <stop offset="100%" stop-color="#007a73"/>
-          </radialGradient>
-          <radialGradient id="bodyG" cx="50%" cy="40%" r="70%">
-            <stop offset="0%" stop-color="#8eb8c4"/>
-            <stop offset="100%" stop-color="#2a5060"/>
-          </radialGradient>
+          <linearGradient id="robotG" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4a7585" />
+            <stop offset="100%" stop-color="#1a3040" />
+          </linearGradient>
         </defs>
-        <!-- tractor beam -->
-        <polygon points="68,55 92,55 110,80 50,80" fill="url(#beamG)"/>
-        <!-- main body -->
-        <ellipse cx="80" cy="50" rx="60" ry="14" fill="url(#bodyG)"/>
-        <ellipse cx="80" cy="50" rx="60" ry="14" fill="none" stroke="rgba(0,196,184,0.5)" stroke-width="0.8"/>
-        <!-- rim lights -->
-        <circle cx="40" cy="52" r="3" fill="#00ff9d" opacity="0.9">
-          <animate attributeName="opacity" values="0.9;0.2;0.9" dur="0.8s" repeatCount="indefinite"/>
+        <!-- legs -->
+        <rect x="22" y="148" width="18" height="44" rx="4" fill="url(#robotG)" />
+        <rect x="50" y="148" width="18" height="44" rx="4" fill="url(#robotG)" />
+        <!-- feet -->
+        <rect x="16" y="186" width="24" height="10" rx="3" fill="#2a5060" />
+        <rect x="50" y="186" width="24" height="10" rx="3" fill="#2a5060" />
+        <!-- body -->
+        <rect x="14" y="80" width="62" height="72" rx="8" fill="url(#robotG)" />
+        <!-- chest panel -->
+        <rect x="26" y="90" width="38" height="28" rx="4" fill="rgba(0,196,184,0.15)" stroke="rgba(0,196,184,0.3)"
+          stroke-width="1" />
+        <circle cx="35" cy="104" r="5" fill="#00ff9d" opacity="0.8">
+          <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="60" cy="55" r="3" fill="#00c4b8" opacity="0.8">
-          <animate attributeName="opacity" values="0.8;0.1;0.8" dur="1.1s" repeatCount="indefinite"/>
+        <circle cx="45" cy="104" r="5" fill="#00c4b8" opacity="0.6">
+          <animate attributeName="opacity" values="0.6;0.1;0.6" dur="1.4s" repeatCount="indefinite" />
         </circle>
-        <circle cx="80" cy="57" r="3" fill="#43d6df" opacity="0.9">
-          <animate attributeName="opacity" values="0.9;0.3;0.9" dur="0.7s" repeatCount="indefinite"/>
+        <circle cx="55" cy="104" r="5" fill="#43d6df" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.15;0.7" dur="1.8s" repeatCount="indefinite" />
         </circle>
-        <circle cx="100" cy="55" r="3" fill="#00ff9d" opacity="0.7">
-          <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.3s" repeatCount="indefinite"/>
+        <!-- arms -->
+        <rect x="-2" y="84" width="16" height="52" rx="6" fill="url(#robotG)" />
+        <rect x="76" y="84" width="16" height="52" rx="6" fill="url(#robotG)" />
+        <!-- hands -->
+        <circle cx="6" cy="140" r="8" fill="#2a5060" />
+        <circle cx="84" cy="140" r="8" fill="#2a5060" />
+        <!-- neck -->
+        <rect x="34" y="64" width="22" height="18" rx="4" fill="#2a5060" />
+        <!-- head -->
+        <rect x="10" y="20" width="70" height="50" rx="10" fill="url(#robotG)" />
+        <!-- visor -->
+        <rect x="18" y="28" width="54" height="22" rx="5" fill="rgba(0,196,184,0.25)" stroke="rgba(0,196,184,0.4)"
+          stroke-width="1" />
+        <!-- eyes -->
+        <circle cx="33" cy="39" r="7" fill="rgba(0,196,184,0.2)" stroke="rgba(0,196,184,0.5)" stroke-width="1" />
+        <circle cx="57" cy="39" r="7" fill="rgba(0,196,184,0.2)" stroke="rgba(0,196,184,0.5)" stroke-width="1" />
+        <circle cx="33" cy="39" r="4" fill="#00c4b8">
+          <animate attributeName="fill" values="#00c4b8;#00ff9d;#00c4b8" dur="3s" repeatCount="indefinite" />
         </circle>
-        <circle cx="120" cy="52" r="3" fill="#00c4b8" opacity="0.8">
-          <animate attributeName="opacity" values="0.8;0.1;0.8" dur="0.9s" repeatCount="indefinite"/>
+        <circle cx="57" cy="39" r="4" fill="#00c4b8">
+          <animate attributeName="fill" values="#00c4b8;#00ff9d;#00c4b8" dur="3s" begin="0.5s"
+            repeatCount="indefinite" />
         </circle>
-        <!-- dome -->
-        <ellipse cx="80" cy="40" rx="26" ry="18" fill="url(#domeG)" opacity="0.9"/>
-        <ellipse cx="73" cy="34" rx="6" ry="4" fill="rgba(255,255,255,0.3)" transform="rotate(-20,73,34)"/>
+        <!-- antenna -->
+        <line x1="45" y1="20" x2="45" y2="4" stroke="#4a7585" stroke-width="2" />
+        <circle cx="45" cy="3" r="4" fill="#00ff9d">
+          <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite" />
+        </circle>
       </svg>
-    </div>
 
-    <!-- CSS Robot silhouette -->
-    <svg class="robot-silhouette" viewBox="0 0 90 200" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="robotG" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#4a7585"/>
-          <stop offset="100%" stop-color="#1a3040"/>
-        </linearGradient>
-      </defs>
-      <!-- legs -->
-      <rect x="22" y="148" width="18" height="44" rx="4" fill="url(#robotG)"/>
-      <rect x="50" y="148" width="18" height="44" rx="4" fill="url(#robotG)"/>
-      <!-- feet -->
-      <rect x="16" y="186" width="24" height="10" rx="3" fill="#2a5060"/>
-      <rect x="50" y="186" width="24" height="10" rx="3" fill="#2a5060"/>
-      <!-- body -->
-      <rect x="14" y="80" width="62" height="72" rx="8" fill="url(#robotG)"/>
-      <!-- chest panel -->
-      <rect x="26" y="90" width="38" height="28" rx="4" fill="rgba(0,196,184,0.15)" stroke="rgba(0,196,184,0.3)" stroke-width="1"/>
-      <circle cx="35" cy="104" r="5" fill="#00ff9d" opacity="0.8">
-        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="45" cy="104" r="5" fill="#00c4b8" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0.1;0.6" dur="1.4s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="55" cy="104" r="5" fill="#43d6df" opacity="0.7">
-        <animate attributeName="opacity" values="0.7;0.15;0.7" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
-      <!-- arms -->
-      <rect x="-2" y="84" width="16" height="52" rx="6" fill="url(#robotG)"/>
-      <rect x="76" y="84" width="16" height="52" rx="6" fill="url(#robotG)"/>
-      <!-- hands -->
-      <circle cx="6" cy="140" r="8" fill="#2a5060"/>
-      <circle cx="84" cy="140" r="8" fill="#2a5060"/>
-      <!-- neck -->
-      <rect x="34" y="64" width="22" height="18" rx="4" fill="#2a5060"/>
-      <!-- head -->
-      <rect x="10" y="20" width="70" height="50" rx="10" fill="url(#robotG)"/>
-      <!-- visor -->
-      <rect x="18" y="28" width="54" height="22" rx="5" fill="rgba(0,196,184,0.25)" stroke="rgba(0,196,184,0.4)" stroke-width="1"/>
-      <!-- eyes -->
-      <circle cx="33" cy="39" r="7" fill="rgba(0,196,184,0.2)" stroke="rgba(0,196,184,0.5)" stroke-width="1"/>
-      <circle cx="57" cy="39" r="7" fill="rgba(0,196,184,0.2)" stroke="rgba(0,196,184,0.5)" stroke-width="1"/>
-      <circle cx="33" cy="39" r="4" fill="#00c4b8">
-        <animate attributeName="fill" values="#00c4b8;#00ff9d;#00c4b8" dur="3s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="57" cy="39" r="4" fill="#00c4b8">
-        <animate attributeName="fill" values="#00c4b8;#00ff9d;#00c4b8" dur="3s" begin="0.5s" repeatCount="indefinite"/>
-      </circle>
-      <!-- antenna -->
-      <line x1="45" y1="20" x2="45" y2="4" stroke="#4a7585" stroke-width="2"/>
-      <circle cx="45" cy="3" r="4" fill="#00ff9d">
-        <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
-      </circle>
-    </svg>
+      <!-- Planet top right -->
+      <div class="planet-deco"></div>
 
-    <!-- Planet top right -->
-    <div class="planet-deco"></div>
+      <p class="hero-eyebrow">⬡ SECTOR 7 — ARCHIVES INTERSTELLAIRES ⬡</p>
+      <h1 class="hero-title">DARKSATHILI</h1>
+      <p class="hero-subtitle">Code Transmissions</p>
+      <p class="hero-desc">
+        Archives des expériences computationnelles.<br />
+        Intelligence artificielle · Algorithmes · Exploration numérique.
+      </p>
+      <div class="hero-cta">
+        <a href="https://github.com/darksathili-jpg" target="_blank" class="btn primary">
+          ↗ Mission Control (GitHub)
+        </a>
+        <a href="#repositories" class="btn">
+          ↓ Consulter les Archives
+        </a>
+      </div>
+      <img src="darksathili.png" alt="darksathili portrait" class="portrait" />
 
-    <p class="hero-eyebrow">⬡ SECTOR 7 — ARCHIVES INTERSTELLAIRES ⬡</p>
-    <h1 class="hero-title">DARKSATHILI</h1>    
-    <p class="hero-subtitle">Code Transmissions</p>
-    <p class="hero-desc">
-      Archives des expériences computationnelles.<br/>
-      Intelligence artificielle · Algorithmes · Exploration numérique.
-    </p>
-    <div class="hero-cta">
-      <a href="https://github.com/darksathili-jpg" target="_blank" class="btn primary">
-        ↗ Mission Control (GitHub)
+      <div class="scroll-indicator">SCROLL</div>
+    </section>
+
+    <!-- ═══════════ REPOS ═══════════ -->
+    <section class="repos-section" id="repositories">
+      <div class="section-divider">
+        <span class="section-label">⬡ Archives de Missions ⬡</span>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="stats-bar" id="stats-bar">
+        <div class="stat-item">
+          <span class="stat-num" id="stat-repos">—</span>
+          <span class="stat-label">Missions</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-stars">—</span>
+          <span class="stat-label">Étoiles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-langs">—</span>
+          <span class="stat-label">Langages</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="stat-forks">—</span>
+          <span class="stat-label">Forks</span>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <input type="text" class="filter-input" id="search-input" placeholder="RECHERCHER UNE MISSION..." />
+        <div class="lang-filter" id="lang-filter">
+          <button class="lang-btn active" data-lang="all">Tous</button>
+        </div>
+      </div>
+
+      <a href="nsi-avenir-final.html" target="_blank" rel="noopener" class="repo-card"
+        style="animation: 0.5s ease 0s 1 normal both running fadeSlide; margin-bottom: 15px">
+        <div class="corner-tl"></div>
+        <div class="corner-br"></div>
+
+        <div class="repo-num">Quel avenir pour la NSI?</div>
+        <div class="repo-name">La NSI face aux enjeux de l'IA</div>
+        <div class="repo-desc">Un audit du programme officiel (BO n°31, août 2025) confronté aux données du marché du
+          travail et aux stratégies éducatives internationales. Objections incluses.</div>
+        <div class="repo-meta">
+          <span class="repo-lang">
+            <span class="lang-dot" style="background:#e34c26;box-shadow:0 0 6px #e34c26"></span>
+            HTML
+          </span>
+          <span class="repo-stars">
+            ⭑ 0
+          </span>
+          <span class="repo-updated">MAJ: Aujourd'hui</span>
+        </div>
       </a>
-      <a href="#repositories" class="btn">
-        ↓ Consulter les Archives
+
+      <a href="https://darksathili.kesug.com/?i=1" target="_blank" rel="noopener" class="repo-card"
+        style="animation: 0.5s ease 0s 1 normal both running fadeSlide; margin-bottom: 15px">
+        <div class="corner-tl"></div>
+        <div class="corner-br"></div>
+
+        <div class="repo-num">IA - Enseignant</div>
+        <div class="repo-name">Devenir un enseignant augmenté</div>
+        <div class="repo-desc">Le site de DarkSATHI Li sur ses recherches en IA</div>
+        <div class="repo-meta">
+          <span class="repo-lang">
+            <span class="lang-dot" style="background:#e34c26;box-shadow:0 0 6px #e34c26"></span>
+            HTML
+          </span>
+          <span class="repo-stars">
+            ⭑ 0
+          </span>
+          <span class="repo-updated">MAJ: Aujourd'hui</span>
+        </div>
       </a>
-    </div>
-    <img src="darksathili.png" alt="darksathili portrait" class="portrait"/>
 
-    <div class="scroll-indicator">SCROLL</div>
-  </section>
-
-  <!-- ═══════════ REPOS ═══════════ -->
-  <section class="repos-section" id="repositories">
-    <div class="section-divider">
-      <span class="section-label">⬡ Archives de Missions ⬡</span>
-    </div>
-
-    <!-- Stats bar -->
-    <div class="stats-bar" id="stats-bar">
-      <div class="stat-item">
-        <span class="stat-num" id="stat-repos">—</span>
-        <span class="stat-label">Missions</span>
+      <!-- Repos grid -->
+      <div class="repos-grid" id="repos-grid">
+        <div class="loading-state">
+          <div>CONNEXION AU SATELLITE EN COURS<span class="loading-dots"></span></div>
+          <br />
+          <small style="font-size:0.6rem;opacity:0.5">FETCHING api.github.com/users/darksathili-jpg/repos</small>
+        </div>
       </div>
-      <div class="stat-item">
-        <span class="stat-num" id="stat-stars">—</span>
-        <span class="stat-label">Étoiles</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" id="stat-langs">—</span>
-        <span class="stat-label">Langages</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" id="stat-forks">—</span>
-        <span class="stat-label">Forks</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Filter bar -->
-    <div class="filter-bar">
-      <input type="text" class="filter-input" id="search-input" placeholder="RECHERCHER UNE MISSION..."/>
-      <div class="lang-filter" id="lang-filter">
-        <button class="lang-btn active" data-lang="all">Tous</button>
-      </div>
-    </div>
+    <footer>
+      <p>
+        DARKSATHILI · SECTOR 7 ARCHIVES ·
+        <a href="https://github.com/darksathili-jpg" target="_blank">github.com/darksathili-jpg</a>
+      </p>
+      <p style="margin-top:8px;font-size:0.55rem;opacity:0.4;">
+        DONNÉES SYNCHRONISÉES EN TEMPS RÉEL · GITHUB API v3
+      </p>
+    </footer>
+  </div>
 
-    <a href="nsi-avenir-final.html" target="_blank" rel="noopener" class="repo-card" style="animation: 0.5s ease 0s 1 normal both running fadeSlide; margin-bottom: 15px">
-      <div class="corner-tl"></div>
-      <div class="corner-br"></div>
-      
-      <div class="repo-num">Quel avenir pour la NSI?</div>
-      <div class="repo-name">La NSI face aux enjeux de l'IA</div>
-      <div class="repo-desc">Un audit du programme officiel (BO n°31, août 2025) confronté aux données du marché du travail et aux stratégies éducatives internationales. Objections incluses.</div>
-      <div class="repo-meta">
-        <span class="repo-lang">
-          <span class="lang-dot" style="background:#e34c26;box-shadow:0 0 6px #e34c26"></span>
-          HTML
-        </span>
-        <span class="repo-stars">
-          ⭑ 0
-        </span>
-        <span class="repo-updated">MAJ: Aujourd'hui</span>
-      </div>
-    </a>
+  <script>
+    // ──────────────────────────────────────────────
+    // STARFIELD
+    // ──────────────────────────────────────────────
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
 
-          <a href="https://darksathili.kesug.com/?i=1" target="_blank" rel="noopener" class="repo-card" style="animation: 0.5s ease 0s 1 normal both running fadeSlide; margin-bottom: 15px">
-      <div class="corner-tl"></div>
-      <div class="corner-br"></div>
-      
-      <div class="repo-num">IA - Enseignant</div>
-      <div class="repo-name">Devenir un enseignant augmenté</div>
-      <div class="repo-desc">Le site de DarkSATHI Li sur ses recherches en IA</div>
-      <div class="repo-meta">
-        <span class="repo-lang">
-          <span class="lang-dot" style="background:#e34c26;box-shadow:0 0 6px #e34c26"></span>
-          HTML
-        </span>
-        <span class="repo-stars">
-          ⭑ 0
-        </span>
-        <span class="repo-updated">MAJ: Aujourd'hui</span>
-      </div>
-    </a>
+    let W, H, stars = [];
 
-    <!-- Repos grid -->
-    <div class="repos-grid" id="repos-grid">
-      <div class="loading-state">
-        <div>CONNEXION AU SATELLITE EN COURS<span class="loading-dots"></span></div>
-        <br/>
-        <small style="font-size:0.6rem;opacity:0.5">FETCHING api.github.com/users/darksathili-jpg/repos</small>
-      </div>
-    </div>
-  </section>
+    function initStars() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      stars = Array.from({ length: 220 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.4 + 0.2,
+        a: Math.random(),
+        speed: Math.random() * 0.004 + 0.001,
+        color: Math.random() > 0.9 ? '#43d6df' : '#d4f1f4'
+      }));
+    }
 
-  <footer>
-    <p>
-      DARKSATHILI · SECTOR 7 ARCHIVES ·
-      <a href="https://github.com/darksathili-jpg" target="_blank">github.com/darksathili-jpg</a>
-    </p>
-    <p style="margin-top:8px;font-size:0.55rem;opacity:0.4;">
-      DONNÉES SYNCHRONISÉES EN TEMPS RÉEL · GITHUB API v3
-    </p>
-  </footer>
-</div>
+    function drawStars(t) {
+      ctx.clearRect(0, 0, W, H);
+      // Sky gradient
+      const sky = ctx.createLinearGradient(0, 0, 0, H * 0.75);
+      sky.addColorStop(0, '#020c10');
+      sky.addColorStop(0.4, '#051820');
+      sky.addColorStop(0.75, '#073a42');
+      sky.addColorStop(1, '#0a5560');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
 
-<script>
-// ──────────────────────────────────────────────
-// STARFIELD
-// ──────────────────────────────────────────────
-const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
+      // Two large "planets" in background
+      const pg1 = ctx.createRadialGradient(W * 0.72, H * 0.28, 0, W * 0.72, H * 0.28, 90);
+      pg1.addColorStop(0, 'rgba(78,140,155,0.35)');
+      pg1.addColorStop(1, 'rgba(0,30,40,0)');
+      ctx.fillStyle = pg1; ctx.beginPath();
+      ctx.arc(W * 0.72, H * 0.28, 90, 0, Math.PI * 2); ctx.fill();
 
-let W, H, stars = [];
+      const pg2 = ctx.createRadialGradient(W * 0.15, H * 0.55, 0, W * 0.15, H * 0.55, 55);
+      pg2.addColorStop(0, 'rgba(50,100,110,0.25)');
+      pg2.addColorStop(1, 'rgba(0,30,40,0)');
+      ctx.fillStyle = pg2; ctx.beginPath();
+      ctx.arc(W * 0.15, H * 0.55, 55, 0, Math.PI * 2); ctx.fill();
 
-function initStars() {
-  W = canvas.width  = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-  stars = Array.from({length: 220}, () => ({
-    x: Math.random() * W,
-    y: Math.random() * H,
-    r: Math.random() * 1.4 + 0.2,
-    a: Math.random(),
-    speed: Math.random() * 0.004 + 0.001,
-    color: Math.random() > 0.9 ? '#43d6df' : '#d4f1f4'
-  }));
-}
+      // Stars
+      stars.forEach(s => {
+        s.a += s.speed;
+        const alpha = 0.3 + 0.7 * Math.abs(Math.sin(s.a));
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = s.color;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(drawStars);
+    }
+    window.addEventListener('resize', initStars);
+    initStars();
+    drawStars(0);
 
-function drawStars(t) {
-  ctx.clearRect(0, 0, W, H);
-  // Sky gradient
-  const sky = ctx.createLinearGradient(0, 0, 0, H * 0.75);
-  sky.addColorStop(0,    '#020c10');
-  sky.addColorStop(0.4,  '#051820');
-  sky.addColorStop(0.75, '#073a42');
-  sky.addColorStop(1,    '#0a5560');
-  ctx.fillStyle = sky;
-  ctx.fillRect(0, 0, W, H);
-
-  // Two large "planets" in background
-  const pg1 = ctx.createRadialGradient(W * 0.72, H * 0.28, 0, W * 0.72, H * 0.28, 90);
-  pg1.addColorStop(0, 'rgba(78,140,155,0.35)');
-  pg1.addColorStop(1, 'rgba(0,30,40,0)');
-  ctx.fillStyle = pg1; ctx.beginPath();
-  ctx.arc(W * 0.72, H * 0.28, 90, 0, Math.PI * 2); ctx.fill();
-
-  const pg2 = ctx.createRadialGradient(W * 0.15, H * 0.55, 0, W * 0.15, H * 0.55, 55);
-  pg2.addColorStop(0, 'rgba(50,100,110,0.25)');
-  pg2.addColorStop(1, 'rgba(0,30,40,0)');
-  ctx.fillStyle = pg2; ctx.beginPath();
-  ctx.arc(W * 0.15, H * 0.55, 55, 0, Math.PI * 2); ctx.fill();
-
-  // Stars
-  stars.forEach(s => {
-    s.a += s.speed;
-    const alpha = 0.3 + 0.7 * Math.abs(Math.sin(s.a));
-    ctx.globalAlpha = alpha;
-    ctx.fillStyle = s.color;
-    ctx.beginPath();
-    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-    ctx.fill();
-  });
-  ctx.globalAlpha = 1;
-  requestAnimationFrame(drawStars);
-}
-window.addEventListener('resize', initStars);
-initStars();
-drawStars(0);
-
-// ──────────────────────────────────────────────
-// COMETS
-// ──────────────────────────────────────────────
-function launchComet(el) {
-  const startX = Math.random() * window.innerWidth * 0.7;
-  const angle  = 30 + Math.random() * 30;
-  const dur    = 0.8 + Math.random() * 0.6;
-  el.style.cssText = `
+    // ──────────────────────────────────────────────
+    // COMETS
+    // ──────────────────────────────────────────────
+    function launchComet(el) {
+      const startX = Math.random() * window.innerWidth * 0.7;
+      const angle = 30 + Math.random() * 30;
+      const dur = 0.8 + Math.random() * 0.6;
+      el.style.cssText = `
     left: ${startX}px; top: -80px;
     opacity: 1;
     transform: rotate(${angle}deg);
     transition: transform ${dur}s linear, top ${dur}s linear, left ${dur}s linear, opacity ${dur}s linear;
   `;
-  requestAnimationFrame(() => {
-    el.style.top     = `${window.innerHeight * 0.6}px`;
-    el.style.left    = `${startX + 300}px`;
-    el.style.opacity = '0';
-  });
-  setTimeout(() => launchComet(el), (dur + 4 + Math.random() * 8) * 1000);
-}
-launchComet(document.getElementById('comet1'));
-setTimeout(() => launchComet(document.getElementById('comet2')), 3000);
+      requestAnimationFrame(() => {
+        el.style.top = `${window.innerHeight * 0.6}px`;
+        el.style.left = `${startX + 300}px`;
+        el.style.opacity = '0';
+      });
+      setTimeout(() => launchComet(el), (dur + 4 + Math.random() * 8) * 1000);
+    }
+    launchComet(document.getElementById('comet1'));
+    setTimeout(() => launchComet(document.getElementById('comet2')), 3000);
 
-// ──────────────────────────────────────────────
-// LANGUAGE COLORS
-// ──────────────────────────────────────────────
-const LANG_COLORS = {
-  Python:     '#3572A5', JavaScript: '#f1e05a', TypeScript: '#2b7489',
-  Rust:       '#dea584', Go:         '#00ADD8', C:          '#555555',
-  'C++':      '#f34b7d', Java:       '#b07219', Ruby:       '#701516',
-  Shell:      '#89e051', HTML:       '#e34c26', CSS:        '#563d7c',
-  Jupyter:    '#DA5B0B', Makefile:   '#427819', Dockerfile: '#384d54',
-  Vue:        '#41b883', Svelte:     '#ff3e00',
-};
-function langColor(lang) {
-  return LANG_COLORS[lang] || '#8eb8c4';
-}
+    // ──────────────────────────────────────────────
+    // LANGUAGE COLORS
+    // ──────────────────────────────────────────────
+    const LANG_COLORS = {
+      Python: '#3572A5', JavaScript: '#f1e05a', TypeScript: '#2b7489',
+      Rust: '#dea584', Go: '#00ADD8', C: '#555555',
+      'C++': '#f34b7d', Java: '#b07219', Ruby: '#701516',
+      Shell: '#89e051', HTML: '#e34c26', CSS: '#563d7c',
+      Jupyter: '#DA5B0B', Makefile: '#427819', Dockerfile: '#384d54',
+      Vue: '#41b883', Svelte: '#ff3e00',
+    };
+    function langColor(lang) {
+      return LANG_COLORS[lang] || '#8eb8c4';
+    }
 
-// ──────────────────────────────────────────────
-// FORMAT DATE
-// ──────────────────────────────────────────────
-function relDate(iso) {
-  const diff = (Date.now() - new Date(iso)) / 1000;
-  if (diff < 86400)    return 'Aujourd\'hui';
-  if (diff < 604800)   return `${Math.floor(diff/86400)}j`;
-  if (diff < 2592000)  return `${Math.floor(diff/604800)}sem`;
-  if (diff < 31536000) return `${Math.floor(diff/2592000)}mo`;
-  return `${Math.floor(diff/31536000)}an`;
-}
+    // ──────────────────────────────────────────────
+    // FORMAT DATE
+    // ──────────────────────────────────────────────
+    function relDate(iso) {
+      const diff = (Date.now() - new Date(iso)) / 1000;
+      if (diff < 86400) return 'Aujourd\'hui';
+      if (diff < 604800) return `${Math.floor(diff / 86400)}j`;
+      if (diff < 2592000) return `${Math.floor(diff / 604800)}sem`;
+      if (diff < 31536000) return `${Math.floor(diff / 2592000)}mo`;
+      return `${Math.floor(diff / 31536000)}an`;
+    }
 
-// ──────────────────────────────────────────────
-// RENDER REPOS
-// ──────────────────────────────────────────────
-let allRepos = [];
-let activeLang = 'all';
+    // ──────────────────────────────────────────────
+    // RENDER REPOS
+    // ──────────────────────────────────────────────
+    let allRepos = [];
+    let activeLang = 'all';
 
-function renderRepos(repos) {
-  const grid = document.getElementById('repos-grid');
-  grid.innerHTML = '';
+    function renderRepos(repos) {
+      const grid = document.getElementById('repos-grid');
+      grid.innerHTML = '';
 
-  if (!repos.length) {
-    grid.innerHTML = `<div class="loading-state" style="color:var(--chrome-dim)">AUCUNE MISSION TROUVÉE</div>`;
-    return;
-  }
+      if (!repos.length) {
+        grid.innerHTML = `<div class="loading-state" style="color:var(--chrome-dim)">AUCUNE MISSION TROUVÉE</div>`;
+        return;
+      }
 
-  repos.forEach((r, i) => {
-    const card = document.createElement('a');
-    card.href   = r.html_url;
-    card.target = '_blank';
-    card.rel    = 'noopener';
-    card.className = 'repo-card';
-    card.style.animationDelay = `${i * 0.06}s`;
-    card.style.animation = `fadeSlide 0.5s ${i * 0.06}s both`;
+      repos.forEach((r, i) => {
+        const card = document.createElement('a');
+        card.href = r.html_url;
+        card.target = '_blank';
+        card.rel = 'noopener';
+        card.className = 'repo-card';
+        card.style.animationDelay = `${i * 0.06}s`;
+        card.style.animation = `fadeSlide 0.5s ${i * 0.06}s both`;
 
-    const num  = String(i + 1).padStart(3, '0');
-    const desc = r.description || 'Aucune description disponible dans les archives.';
-    const lang = r.language || '—';
-    const col  = langColor(r.language);
+        const num = String(i + 1).padStart(3, '0');
+        const desc = r.description || 'Aucune description disponible dans les archives.';
+        const lang = r.language || '—';
+        const col = langColor(r.language);
 
-    card.innerHTML = `
+        card.innerHTML = `
       <div class="corner-tl"></div>
       <div class="corner-br"></div>
       ${r.fork ? '<span class="badge-fork">Fork</span>' : ''}
@@ -1004,84 +1227,84 @@ function renderRepos(repos) {
         <span class="repo-updated">MAJ: ${relDate(r.updated_at)}</span>
       </div>
     `;
-    grid.appendChild(card);
-  });
-}
-
-function applyFilters() {
-  const q = document.getElementById('search-input').value.toLowerCase();
-  let filtered = allRepos.filter(r => {
-    const matchLang = activeLang === 'all' || r.language === activeLang;
-    const matchQ    = !q ||
-      r.name.toLowerCase().includes(q) ||
-      (r.description || '').toLowerCase().includes(q);
-    return matchLang && matchQ;
-  });
-  renderRepos(filtered);
-}
-
-// ──────────────────────────────────────────────
-// FETCH REPOS
-// ──────────────────────────────────────────────
-async function fetchRepos() {
-  const USERNAME = 'darksathili-jpg';
-  const grid     = document.getElementById('repos-grid');
-
-  try {
-    let page = 1, results = [];
-    while(true) {
-      const res  = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100&page=${page}&sort=updated`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-      const data = await res.json();
-      results = results.concat(data);
-      if (data.length < 100) break;
-      page++;
+        grid.appendChild(card);
+      });
     }
 
-    allRepos = results;
-
-    // Stats
-    const totalStars = results.reduce((s, r) => s + r.stargazers_count, 0);
-    const totalForks = results.reduce((s, r) => s + r.forks_count, 0);
-    const langs      = [...new Set(results.map(r => r.language).filter(Boolean))];
-
-    document.getElementById('stat-repos').textContent = results.length;
-    document.getElementById('stat-stars').textContent = totalStars;
-    document.getElementById('stat-langs').textContent = langs.length;
-    document.getElementById('stat-forks').textContent = totalForks;
-
-    // Language filter buttons
-    const lf = document.getElementById('lang-filter');
-    langs.sort().forEach(l => {
-      const btn = document.createElement('button');
-      btn.className = 'lang-btn';
-      btn.textContent = l;
-      btn.dataset.lang = l;
-      btn.style.borderColor = langColor(l);
-      btn.addEventListener('click', () => {
-        activeLang = l;
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        applyFilters();
+    function applyFilters() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      let filtered = allRepos.filter(r => {
+        const matchLang = activeLang === 'all' || r.language === activeLang;
+        const matchQ = !q ||
+          r.name.toLowerCase().includes(q) ||
+          (r.description || '').toLowerCase().includes(q);
+        return matchLang && matchQ;
       });
-      lf.appendChild(btn);
-    });
+      renderRepos(filtered);
+    }
 
-    // All button
-    document.querySelector('.lang-btn[data-lang="all"]').addEventListener('click', () => {
-      activeLang = 'all';
-      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-      document.querySelector('.lang-btn[data-lang="all"]').classList.add('active');
-      applyFilters();
-    });
+    // ──────────────────────────────────────────────
+    // FETCH REPOS
+    // ──────────────────────────────────────────────
+    async function fetchRepos() {
+      const USERNAME = 'darksathili-jpg';
+      const grid = document.getElementById('repos-grid');
 
-    // Search
-    document.getElementById('search-input').addEventListener('input', applyFilters);
+      try {
+        let page = 1, results = [];
+        while (true) {
+          const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?per_page=100&page=${page}&sort=updated`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+          const data = await res.json();
+          results = results.concat(data);
+          if (data.length < 100) break;
+          page++;
+        }
 
-    renderRepos(allRepos);
+        allRepos = results;
 
-  } catch(err) {
-    grid.innerHTML = `
+        // Stats
+        const totalStars = results.reduce((s, r) => s + r.stargazers_count, 0);
+        const totalForks = results.reduce((s, r) => s + r.forks_count, 0);
+        const langs = [...new Set(results.map(r => r.language).filter(Boolean))];
+
+        document.getElementById('stat-repos').textContent = results.length;
+        document.getElementById('stat-stars').textContent = totalStars;
+        document.getElementById('stat-langs').textContent = langs.length;
+        document.getElementById('stat-forks').textContent = totalForks;
+
+        // Language filter buttons
+        const lf = document.getElementById('lang-filter');
+        langs.sort().forEach(l => {
+          const btn = document.createElement('button');
+          btn.className = 'lang-btn';
+          btn.textContent = l;
+          btn.dataset.lang = l;
+          btn.style.borderColor = langColor(l);
+          btn.addEventListener('click', () => {
+            activeLang = l;
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            applyFilters();
+          });
+          lf.appendChild(btn);
+        });
+
+        // All button
+        document.querySelector('.lang-btn[data-lang="all"]').addEventListener('click', () => {
+          activeLang = 'all';
+          document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('.lang-btn[data-lang="all"]').classList.add('active');
+          applyFilters();
+        });
+
+        // Search
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+
+        renderRepos(allRepos);
+
+      } catch (err) {
+        grid.innerHTML = `
       <div class="error-state">
         ⚠ ERREUR DE TRANSMISSION<br/>
         ${err.message}<br/><br/>
@@ -1094,10 +1317,11 @@ async function fetchRepos() {
         </small>
       </div>
     `;
-  }
-}
+      }
+    }
 
-fetchRepos();
-</script>
+    fetchRepos();
+  </script>
 </body>
+
 </html>
