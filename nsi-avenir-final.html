@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSI à l'ère de l'IA — Analyse finale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:       #111318;
+      --paper:     #f8f6f1;
+      --cream:     #edeae2;
+      --rule:      #d8d4c8;
+      --accent:    #b83a22;
+      --gold:      #9a7c3a;
+      --ok:        #1f6040;
+      --ok-bg:     #e4f0e9;
+      --warn:      #b83a22;
+      --warn-bg:   #f5e3df;
+      --miss:      #555;
+      --miss-bg:   #ebebeb;
+      --blue:      #2a4e8c;
+      --blue-bg:   #dde6f5;
+      --muted:     #666;
+      --cap:       #999;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Sans 3', sans-serif;
+      line-height: 1.75;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .header-band {
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 60%, var(--ink) 100%);
+    }
+
+    .header-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 32px 56px;
+    }
+
+    .kicker {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-deck {
+      font-size: 1.05rem;
+      color: rgba(248,246,241,0.68);
+      max-width: 580px;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: rgba(248,246,241,0.38);
+      border-top: 1px solid rgba(248,246,241,0.1);
+      padding-top: 20px;
+    }
+
+    /* ─── SCORE BADGE ─── */
+    .score-banner {
+      background: var(--cream);
+      border-left: 5px solid var(--gold);
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 28px 36px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .score-circle {
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .score-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .score-den {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .score-text h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .score-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ─── LAYOUT ─── */
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-head {
+      margin: 64px 0 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .section-num {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--cap);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    p { margin-bottom: 14px; color: #1c1c1c; font-size: 0.97rem; }
+
+    /* ─── AUDIT FINDING BOX ─── */
+    .finding {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 28px 34px;
+      margin: 28px 0;
+      border-left: 4px solid var(--accent);
+    }
+
+    .finding .f-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .finding p { color: rgba(248,246,241,0.85); font-size: 0.92rem; margin: 0; }
+    .finding strong { color: var(--accent); }
+
+    /* ─── STAT ROW ─── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .stat-card {
+      background: var(--cream);
+      border-top: 3px solid var(--accent);
+      padding: 18px 20px;
+    }
+
+    .stat-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .stat-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .stat-src {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9px;
+      color: var(--cap);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+    }
+
+    .nuance-note {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--muted);
+      background: var(--cream);
+      border-left: 3px solid var(--rule);
+      padding: 10px 14px;
+      margin: -8px 0 20px;
+    }
+
+    /* ─── PROGRAMME TABLE ─── */
+    .prog-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.88rem;
+    }
+
+    .prog-table thead tr {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .prog-table thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .prog-table tbody tr { border-bottom: 1px solid var(--rule); }
+    .prog-table tbody tr:nth-child(even) { background: var(--cream); }
+
+    .prog-table td {
+      padding: 11px 14px;
+      vertical-align: top;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    .tag-ok   { background: var(--ok-bg);   color: var(--ok);   }
+    .tag-warn { background: var(--warn-bg); color: var(--warn); }
+    .tag-miss { background: var(--miss-bg); color: var(--miss); }
+
+    /* ─── VERSUS TABLE ─── */
+    .vs-table {
+      border: 1px solid var(--rule);
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .vs-head {
+      display: grid;
+      grid-template-columns: 1fr 36px 1fr;
+      background: var(--ink);
+    }
+
+    .vs-head div {
+      padding: 9px 16px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .vs-row {
+      display: grid;
+      grid-template-columns: 1fr 36px 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .vs-row:last-child { border-bottom: none; }
+
+    .vs-left  { background: var(--warn-bg); color: var(--warn);  padding: 13px 16px; font-size: 0.86rem; text-align: right; }
+    .vs-right { background: var(--ok-bg);   color: var(--ok);    padding: 13px 16px; font-size: 0.86rem; }
+
+    .vs-mid {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── OBJECTION BOX ─── */
+    .objection {
+      background: var(--blue-bg);
+      border-left: 4px solid var(--blue);
+      padding: 22px 28px;
+      margin: 12px 0;
+    }
+
+    .objection .obj-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .objection h3 { font-size: 0.95rem; margin-bottom: 6px; color: var(--blue); }
+    .objection p  { font-size: 0.87rem; color: #2a3a5a; margin-bottom: 6px; }
+
+    .reponse {
+      background: var(--cream);
+      border-left: 3px solid var(--rule);
+      padding: 10px 16px;
+      margin-top: 10px;
+    }
+
+    .reponse p { font-size: 0.85rem; color: var(--muted); margin: 0; font-style: italic; }
+
+    /* ─── INTERNATIONAL ─── */
+    .intl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+
+    .intl-card {
+      border: 1px solid var(--rule);
+      padding: 20px 22px;
+      background: var(--paper);
+      position: relative;
+    }
+
+    .intl-flag {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .intl-card h3 { font-size: 0.92rem; margin-bottom: 6px; }
+    .intl-card p  { font-size: 0.82rem; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    .intl-badge {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .badge-lead  { background: var(--ok-bg);   color: var(--ok);   }
+    .badge-mid   { background: var(--blue-bg);  color: var(--blue); }
+    .badge-trail { background: var(--warn-bg);  color: var(--warn); }
+
+    /* ─── REFORM STEPS ─── */
+    .steps { margin: 24px 0; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 20px;
+      margin-bottom: 22px;
+      align-items: start;
+    }
+
+    .step-n {
+      width: 44px; height: 44px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-body h3 { font-size: 0.97rem; margin-bottom: 4px; }
+
+    .step-body p  { font-size: 0.86rem; color: var(--muted); margin: 0; }
+
+    .step-body .anchor {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      color: var(--cap);
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* ─── VERDICT ─── */
+    .verdict {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 52px 48px;
+      margin: 56px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .verdict::before {
+      content: '«';
+      position: absolute;
+      top: -30px; left: 16px;
+      font-family: 'Libre Baskerville', serif;
+      font-size: 16rem;
+      opacity: 0.04;
+      color: var(--gold);
+      pointer-events: none;
+    }
+
+    .verdict-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+
+    .verdict blockquote {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      line-height: 1.55;
+      font-style: italic;
+      color: rgba(248,246,241,0.9);
+      position: relative;
+      z-index: 1;
+    }
+
+    .verdict blockquote strong {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .verdict-caveat {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(248,246,241,0.12);
+      font-size: 0.82rem;
+      color: rgba(248,246,241,0.45);
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── SOURCES ─── */
+    .sources-block {
+      margin: 48px 0 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+    }
+
+    .sources-block h3 {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cap);
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+
+    .source-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .source-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 12px;
+      font-size: 0.83rem;
+      border-bottom: 1px solid var(--cream);
+      padding-bottom: 8px;
+    }
+
+    .source-item .src-type {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9px;
+      color: var(--cap);
+      letter-spacing: 0.08em;
+      padding-top: 2px;
+    }
+
+    .source-item .src-ref { color: var(--ink); line-height: 1.4; }
+    .source-item .src-ref a { color: var(--blue); text-decoration: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(248,246,241,0.3);
+      text-align: center;
+      padding: 22px 32px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── ANIMATION ─── */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .fade { opacity: 0; animation: fadeIn 0.5s ease forwards; }
+    .fade:nth-child(1) { animation-delay: 0.05s; }
+    .fade:nth-child(2) { animation-delay: 0.18s; }
+    .fade:nth-child(3) { animation-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 620px) {
+      .score-banner { grid-template-columns: 1fr; }
+      .vs-head, .vs-row { grid-template-columns: 1fr; }
+      .vs-mid, .vs-head div:last-child { display: none; }
+      .vs-left { text-align: left; }
+      .source-item { grid-template-columns: 1fr; }
+      .source-item .src-type { display: none; }
+      .verdict { padding: 36px 24px; }
+      .header-inner { padding: 44px 20px 36px; }
+      main { padding: 0 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-band"></div>
+  <div class="header-inner">
+    <div class="fade">
+      <span class="kicker">Analyse contradictoire · Avril 2026</span>
+      <h1>NSI à l'ère de l'IA :<br/><em>ce que les textes officiels<br/>ne disent pas</em></h1>
+      <p class="header-deck">Un audit du programme officiel (BO n°31, août 2025) confronté aux données du marché du travail et aux stratégies éducatives internationales. Objections incluses.</p>
+      <div class="header-meta">
+        <span>BO n°31 · 21 août 2025 · MENE2516123N</span>
+        <span>Programme NSI · BO spécial n°1 · 22 jan. 2019</span>
+        <span>Sources : INSEE · PwC · McKinsey · Tufts · Numeum · APEC · Euractiv</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- §1 CONSTAT OFFICIEL -->
+  <div class="section-head">
+    <span class="section-num">§ 01</span>
+    <h2>Ce que dit le Bulletin Officiel — et ce qu'il ne dit pas</h2>
+  </div>
+
+  <p>La note de service du 4 juillet 2025, publiée au BO n°31 du 21 août 2025 (réf. MENE2516123N), définit l'épreuve terminale NSI applicable à compter du bac 2026. Le programme d'enseignement sous-jacent, lui, date du BO spécial n°1 du 22 janvier 2019 et n'a pas été révisé depuis.</p>
+
+  <div class="finding">
+    <div class="f-label">⬤ Constat documenté</div>
+    <p>Les 6 blocs de compétences officiels (C1 à C6) couvrent : histoire de l'informatique, structures de données, bases de données, architectures/réseaux, langages &amp; programmation, algorithmique. <strong>Aucun des six ne mentionne explicitement l'intelligence artificielle, le machine learning, les modèles de langage, l'éthique algorithmique, l'AI Act européen ou l'IA générative.</strong> Ce silence est vérifiable directement sur Éduscol (eduscol.education.fr/5823).</p>
+  </div>
+
+  <table class="prog-table">
+    <thead>
+      <tr>
+        <th>Bloc</th>
+        <th>Contenu officiel</th>
+        <th>Évaluation face à 2026</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>C1</strong></td>
+        <td>Histoire de l'informatique</td>
+        <td><span class="tag tag-ok">Solide — culture fondamentale</span></td>
+      </tr>
+      <tr>
+        <td><strong>C2</strong></td>
+        <td>Structures de données (listes, arbres, piles…)</td>
+        <td><span class="tag tag-ok">Fondamental — base du ML et de l'IA</span></td>
+      </tr>
+      <tr>
+        <td><strong>C3</strong></td>
+        <td>Bases de données relationnelles, SQL</td>
+        <td><span class="tag tag-ok">Pertinent — données omniprésentes</span></td>
+      </tr>
+      <tr>
+        <td><strong>C4</strong></td>
+        <td>Architectures, OS, réseaux, protocoles</td>
+        <td><span class="tag tag-ok">Pertinent — infrastructure IA comprise</span></td>
+      </tr>
+      <tr>
+        <td><strong>C5</strong></td>
+        <td>Langages, programmation Python, paradigmes</td>
+        <td><span class="tag tag-warn">Risque — si enseigné comme finalité et non comme outil</span></td>
+      </tr>
+      <tr>
+        <td><strong>C6</strong></td>
+        <td>Algorithmique, tri, graphes, complexité</td>
+        <td><span class="tag tag-warn">Insuffisant seul — aucun lien avec ML/IA dans le programme</span></td>
+      </tr>
+      <tr>
+        <td><strong>Absent</strong></td>
+        <td>Intelligence artificielle, machine learning, LLM</td>
+        <td><span class="tag tag-miss">Non mentionné dans aucun texte officiel NSI</span></td>
+      </tr>
+      <tr>
+        <td><strong>Absent</strong></td>
+        <td>Éthique algorithmique, AI Act, biais, RGPD</td>
+        <td><span class="tag tag-miss">Non mentionné dans aucun texte officiel NSI</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- §2 DONNÉES MARCHÉ -->
+  <div class="section-head">
+    <span class="section-num">§ 02</span>
+    <h2>Les signaux du marché du travail — avec leurs limites</h2>
+  </div>
+
+  <p>Les données ci-dessous sont réelles et sourcées. Elles doivent cependant être lues avec précision : elles décrivent des tendances sectorielles générales, pas directement le devenir des élèves NSI en particulier.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-num">−7,4%</div>
+      <div class="stat-desc">Emploi des moins de 30 ans dans l'information-communication, T4 2025</div>
+      <div class="stat-src">Source : INSEE · périmètre : secteur IT global</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30%</div>
+      <div class="stat-desc">Score moyen d'automatisation des 21 métiers informatiques analysés</div>
+      <div class="stat-src">Source : Coface / Observatoire des emplois 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">88%</div>
+      <div class="stat-desc">Des entreprises utilisant l'IA dans au moins une fonction en 2025</div>
+      <div class="stat-src">Source : McKinsey Global Survey on AI, 2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">+252%</div>
+      <div class="stat-desc">Croissance des offres d'emploi "augmentées par l'IA" en France, 2019–2024</div>
+      <div class="stat-src">Source : PwC AI Jobs Barometer, 2025</div>
+    </div>
+  </div>
+
+  <div class="nuance-note">
+    ⚠ Nuance méthodologique : ces chiffres concernent l'ensemble du secteur IT, pas spécifiquement les bacheliers NSI. La baisse INSEE touche d'abord les postes juniors de programmation, pas les profils analytiques ou de gestion de projets numériques. Le chiffre Coface mesure un risque d'automatisation des tâches, non une suppression certaine de postes. Ces données signalent une pression structurelle réelle, sans permettre de prédire l'impact individuel pour chaque élève.
+  </div>
+
+  <!-- §3 OBJECTIONS LÉGITIMES -->
+  <div class="section-head">
+    <span class="section-num">§ 03</span>
+    <h2>Les objections légitimes — et ce qu'elles valent</h2>
+  </div>
+
+  <p>Tout diagnostic honnête inclut les arguments de ceux qui défendraient le programme actuel. Voici les trois objections les plus solides — et pourquoi elles ne suffisent pas à invalider le constat.</p>
+
+  <div class="objection">
+    <div class="obj-label">◆ Objection 1 — L'algorithmique est le fondement du machine learning</div>
+    <h3>« NSI enseigne déjà les briques de base de l'IA : arbres, graphes, complexité algorithmique. »</h3>
+    <p>C'est vrai. Les structures de données et l'algorithmique sont nécessaires pour comprendre le ML. Un élève qui maîtrise les arbres binaires a une longueur d'avance sur quelqu'un qui ne sait pas ce qu'est une structure de données.</p>
+    <div class="reponse">
+      <p>Réponse : Ces briques sont nécessaires, pas suffisantes. Connaître la récursivité ne signifie pas comprendre la descente de gradient ou le fonctionnement d'un réseau de neurones. Le programme n'établit aucun lien explicite entre ces fondements et l'IA — ce lien est laissé à l'initiative de chaque enseignant. Il devrait être structurel.</p>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-label">◆ Objection 2 — La rigueur prime sur les modes technologiques</div>
+    <h3>« Apprendre vraiment Python construit une rigueur que les outils IA ne peuvent pas remplacer. »</h3>
+    <p>Argument valable. La maîtrise d'un langage de programmation développe une pensée logique et une discipline de résolution de problèmes indépendante des tendances technologiques.</p>
+    <div class="reponse">
+      <p>Réponse : Personne ne propose de supprimer la programmation. L'enjeu est de repositionner son enseignement : coder pour comprendre les systèmes, évaluer l'output d'une IA, détecter ses erreurs — et non plus coder comme finalité en soi dans une épreuve de 4h30 qui mesure des aptitudes que GitHub Copilot exécute en quelques secondes.</p>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-label">◆ Objection 3 — NSI ne forme pas des professionnels mais des bacheliers</div>
+    <h3>« Demander à NSI de former à l'IA est une surcharge. C'est au supérieur de le faire. »</h3>
+    <p>Objection institutionnellement cohérente. NSI est une spécialité de lycée général, pas un BTS ou une licence pro. Son niveau de technicité a des limites légitimes.</p>
+    <div class="reponse">
+      <p>Réponse : L'objection serait valide si les modules IA restaient dans le supérieur. Or l'Estonie — première au classement PISA européen — intègre l'IA générative dans ses lycées dès 2025 (programme AI Leap). La Chine la rend obligatoire de la maternelle au lycée. Singapour déploie des tuteurs IA adaptatifs au secondaire. L'argument "c'est pour plus tard" n'est plus tenable face à ces comparaisons internationales.</p>
+    </div>
+  </div>
+
+  <!-- §4 BENCHMARK INTERNATIONAL -->
+  <div class="section-head">
+    <span class="section-num">§ 04</span>
+    <h2>Que font les autres pays ? Benchmark objectif</h2>
+  </div>
+
+  <p>La comparaison internationale est le test de robustesse le plus efficace. Si plusieurs pays aux systèmes éducatifs distincts convergent vers les mêmes transformations, la tendance est structurelle et non conjoncturelle.</p>
+
+  <div class="intl-grid">
+    <div class="intl-card">
+      <span class="intl-flag">🇪🇪</span>
+      <span class="intl-badge badge-lead">Leader mondial</span>
+      <h3>Estonie — AI Leap 2025</h3>
+      <p>Depuis sept. 2025 : 20 000 lycéens et 3 000 enseignants ont accès gratuit à ChatGPT Edu (OpenAI) et aux outils Anthropic. Premier pays au monde à intégrer l'IA générative dans ses lycées. Déjà n°1 PISA Europe 2022. Programme étendu à 58 000 élèves d'ici 2027.</p>
+    </div>
+    <div class="intl-card">
+      <span class="intl-flag">🇸🇬</span>
+      <span class="intl-badge badge-lead">Très avancé</span>
+      <h3>Singapour — EdTech Masterplan 2030</h3>
+      <p>Tuteurs IA adaptatifs (ALS) déployés en maths au secondaire. Certificat IA obligatoire pour tous les futurs enseignants d'ici 2026. Cadre éthique AI-in-Education formalisé en 2024 (agentivité, équité, sécurité).</p>
+    </div>
+    <div class="intl-card">
+      <span class="intl-flag">🇫🇮</span>
+      <span class="intl-badge badge-mid">Approche distincte</span>
+      <h3>Finlande — Littératie critique</h3>
+      <p>Pas de matière IA dédiée mais une littératie critique intégrée dès 3 ans. Le programme AuroraAI exige que tous les outils IA utilisés en éducation expliquent leurs décisions en langage compréhensible aux élèves.</p>
+    </div>
+    <div class="intl-card">
+      <span class="intl-flag">🇨🇳</span>
+      <span class="intl-badge badge-lead">Obligatoire</span>
+      <h3>Chine — IA de la maternelle au lycée</h3>
+      <p>Rentrée 2025 : IA obligatoire à tous les niveaux. Reconnaissance vocale et visuelle au primaire, machine learning au collège, conception d'algorithmes au lycée. 184 "écoles bases IA" pilotes à Pékin dès 2024.</p>
+    </div>
+    <div class="intl-card">
+      <span class="intl-flag">🇫🇷</span>
+      <span class="intl-badge badge-trail">En retard</span>
+      <h3>France — Pix IA (obligatoire 2026)</h3>
+      <p>Modules Pix IA (30 min à 1h30) sur les LLM, deepfakes, biais environnementaux. Généralisés en 4e et 2de à la rentrée 2026. IA générative interdite en primaire. IA souveraine enseignants prévue 2026–2027. Seuls 24% des élèves ont accès à des outils IA à l'école (GoStudent 2025), contre 44% en Italie.</p>
+    </div>
+    <div class="intl-card">
+      <span class="intl-flag">🇰🇷</span>
+      <span class="intl-badge badge-mid">Mise en garde</span>
+      <h3>Corée du Sud — Le contre-exemple</h3>
+      <p>Budget de 360 M€ pour remplacer tous les manuels par des "AI Digital Textbooks" en 2024. Résultat : adoption chaotique et pédagogues critiques. Rappel que la technologie massive ne garantit pas la qualité pédagogique.</p>
+    </div>
+  </div>
+
+  <!-- §5 TENSION -->
+  <div class="section-head">
+    <span class="section-num">§ 05</span>
+    <h2>Le paradoxe central : ce que NSI enseigne vs. ce que le marché valorise</h2>
+  </div>
+
+  <p>Cette table ne prétend pas que le programme actuel est "inutile" — elle montre que son orientation principale ne correspond plus aux compétences les plus recherchées.</p>
+
+  <div class="vs-table">
+    <div class="vs-head">
+      <div>Programme NSI en vigueur (BO 2019)</div>
+      <div></div>
+      <div>Compétences prioritaires en 2026</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-left">Écrire du code Python de zéro</div>
+      <div class="vs-mid">vs</div>
+      <div class="vs-right">Diriger, évaluer et corriger du code généré par l'IA</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-left">Implémenter un algorithme de tri</div>
+      <div class="vs-mid">vs</div>
+      <div class="vs-right">Comprendre pourquoi un modèle ML produit une erreur</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-left">Épreuve de 4h30 sur exercices standardisés</div>
+      <div class="vs-mid">vs</div>
+      <div class="vs-right">Capacité à conduire un projet numérique complexe</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-left">Aucune mention de l'éthique ou de la régulation IA</div>
+      <div class="vs-mid">vs</div>
+      <div class="vs-right">AI Act en vigueur : éthique et conformité algorithmique en forte demande</div>
+    </div>
+    <div class="vs-row">
+      <div class="vs-left">Spécialité cloisonnée dans l'informatique pure</div>
+      <div class="vs-mid">vs</div>
+      <div class="vs-right">Profils "pont entre IA et domaines métier" parmi les plus recherchés</div>
+    </div>
+  </div>
+
+  <!-- §6 PROPOSITIONS -->
+  <div class="section-head">
+    <span class="section-num">§ 06</span>
+    <h2>5 réformes concrètes — ancrées dans les faits</h2>
+  </div>
+
+  <p>Chaque proposition est ancrée dans un constat sourcé. Elles ne visent pas à remplacer les fondamentaux, mais à les compléter et à repositionner leur finalité.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">1</div>
+      <div class="step-body">
+        <h3>Introduire un bloc C7 : IA, machine learning et fonctionnement des modèles</h3>
+        <p>Réseaux de neurones, apprentissage supervisé, biais, hallucinations. Pas comme utilisateur de ChatGPT, mais comme praticien capable de comprendre ce qui se passe à l'intérieur et pourquoi un modèle échoue. L'Estonie et Singapour le font déjà au lycée.</p>
+        <span class="anchor">Ancrage : absence constatée dans BO n°31 · Modèle : Estonie AI Leap 2025, Singapour ALS</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">2</div>
+      <div class="step-body">
+        <h3>Créer un bloc C8 : éthique, régulation et responsabilité algorithmique</h3>
+        <p>L'AI Act européen est en vigueur. Il classe certains systèmes IA comme "à haut risque" et impose des obligations de transparence. Former des lycéens à ces enjeux n'est pas une option militante : c'est une compétence professionnelle concrète, et citoyenne.</p>
+        <span class="anchor">Ancrage : AI Act (UE, applicable 2024–2026) · Absence dans BO n°31 vérifiée</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">3</div>
+      <div class="step-body">
+        <h3>Repositionner C5 : "piloter et évaluer l'IA" plutôt qu'"écrire du code from scratch"</h3>
+        <p>La programmation reste nécessaire — comme outil de compréhension et de vérification. Mais une épreuve qui demande d'écrire 30 lignes de Python en 4h30 mesure une aptitude que GitHub Copilot exécute en 8 secondes. L'enjeu est de reformuler l'objectif, pas de supprimer la compétence.</p>
+        <span class="anchor">Ancrage : Stack Overflow Dev Survey 2025 (84% des devs utilisent une IA dans leur cycle de développement)</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">4</div>
+      <div class="step-body">
+        <h3>Introduire des projets transdisciplinaires obligatoires (santé, droit, environnement)</h3>
+        <p>Les profils les plus recherchés en 2026 font le pont entre l'IA et les besoins métier (PwC, 2025). Un projet NSI croisant données climatiques, analyse Python et questions éthiques prépare mieux à ces rôles qu'une série d'exercices algorithmiques isolés de tout contexte.</p>
+        <span class="anchor">Ancrage : PwC AI Jobs Barometer 2025 · Modèle : Finlande (approche thématique interdisciplinaire)</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">5</div>
+      <div class="step-body">
+        <h3>Réformer l'épreuve : évaluer ce que l'IA ne remplace pas encore</h3>
+        <p>Argumenter des choix d'architecture, identifier des risques, documenter une démarche, défendre un projet devant jury : ce sont des aptitudes durables que les modèles actuels ne peuvent pas produire à la place de l'élève. L'épreuve actuelle n'en mesure aucune.</p>
+        <span class="anchor">Ancrage : BO n°31 (format épreuve inchangé) · Modèle : Singapour AI-in-Ed Ethics Framework 2024</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="verdict-label">◆ Verdict de l'audit — version finale</div>
+    <blockquote>
+      NSI n'est pas une spécialité à abolir. C'est une spécialité <strong>dont les fondations tiennent</strong> — algorithmique, structures de données, réseaux — mais dont le programme de 2019 a été conçu pour un monde numérique qui n'existe plus. Ses blocs C1 à C4 restent pertinents. Ses blocs C5 et C6 demandent un repositionnement, pas une suppression. Ce qui manque irrémédiablement : l'IA comme objet d'étude, l'éthique comme pilier, et une épreuve qui mesure des compétences que les machines ne peuvent pas encore produire à la place des élèves. <strong>La réforme nécessaire n'est ni radicale ni urgentiste — elle est précise.</strong> Et les pays qui l'ont engagée avant nous le prouvent : c'est faisable, au lycée, sans sacrifier la rigueur.
+    </blockquote>
+    <p class="verdict-caveat">Cette analyse repose sur des sources publiques vérifiées à la date d'avril 2026. Elle ne prétend pas prédire l'avenir du marché de l'emploi ni l'évolution des programmes — domaines intrinsèquement incertains. Elle mesure un écart documenté entre un programme officiel figé et un contexte technologique en rupture.</p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-block">
+    <h3>Sources documentées</h3>
+    <div class="source-list">
+      <div class="source-item">
+        <span class="src-type">Texte officiel</span>
+        <span class="src-ref">BO n°31 du 21 août 2025 — Note de service MENE2516123N du 4 juillet 2025. Épreuve NSI terminale, applicable session 2026. education.gouv.fr</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Texte officiel</span>
+        <span class="src-ref">BO spécial n°1 du 22 janvier 2019 — Programme NSI Première. BO spécial n°8 du 25 juillet 2019 — Programme NSI Terminale. eduscol.education.fr/5823</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Données emploi</span>
+        <span class="src-ref">INSEE — Note de conjoncture sur l'emploi dans le secteur information-communication, T4 2025. Baisse de −7,4% de l'emploi des moins de 30 ans.</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Rapport emploi</span>
+        <span class="src-ref">APEC — Prévisions recrutements cadres 2025. Baisse de 18% dans les activités informatiques en 2024 ; −19% pour les profils juniors (moins d'un an d'expérience).</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Rapport emploi</span>
+        <span class="src-ref">Numeum — Marché du numérique en France, juin 2025. Perte nette de 7 000 postes en 2024 dans le numérique ; 36% des entreprises anticipent une réduction des recrutements de jeunes diplômés en 2025.</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Rapport IA/emploi</span>
+        <span class="src-ref">PwC — AI Jobs Barometer 2025. 166 000 offres d'emploi liées à l'IA en France en 2024 (+252% des métiers augmentés par l'IA depuis 2019). pwc.fr</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Rapport IA/emploi</span>
+        <span class="src-ref">McKinsey — The State of AI 2025. 88% des entreprises utilisent l'IA dans au moins une fonction en 2025 (vs 55% en 2022).</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Rapport emploi</span>
+        <span class="src-ref">Coface / Observatoire des emplois menacés et émergents, 2025. 21 métiers informatiques avec score moyen d'automatisation de 30%. 16% des emplois en France exposés à un risque significatif.</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Étude académique</span>
+        <span class="src-ref">Tufts University — American AI Jobs Risk Index, 2026. 9,3 millions d'emplois menacés dans le scénario médian (périmètre : États-Unis — transposabilité France à nuancer).</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Développeurs</span>
+        <span class="src-ref">Stack Overflow Developer Survey 2025. 84% des développeurs utilisent ou envisagent d'utiliser une IA dans leur cycle de développement (vs 76% en 2024). 46% doutent de la fiabilité des résultats IA.</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Benchmark international</span>
+        <span class="src-ref">Estonie — Programme AI Leap 2025 (TI-Hüpe). 20 000 lycéens + 3 000 enseignants, accès gratuit ChatGPT Edu + outils Anthropic dès sept. 2025. Euractiv, 25 fév. 2025 · Acteurs Publics · euractiv.fr</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Benchmark international</span>
+        <span class="src-ref">Profexpress — "IA à l'école : 6 pays, 6 stratégies", mars 2026. Comparatif Estonie / Finlande / Singapour / Chine / France / Corée du Sud. profexpress.com</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Régulation</span>
+        <span class="src-ref">AI Act européen — Règlement (UE) 2024/1689, entré en vigueur le 1er août 2024, applicable progressivement jusqu'en 2026. eur-lex.europa.eu</span>
+      </div>
+      <div class="source-item">
+        <span class="src-type">Éducation nationale</span>
+        <span class="src-ref">France — Parcours Pix IA obligatoire en 4e et 2de, généralisé rentrée 2026. BO du 5 février 2026 (MENE2527173N). education.gouv.fr/bo/2026/Hebdo6</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Analyse produite avec l'assistance de Claude (Anthropic) · Avril 2026 · Sources publiques vérifiables · Librement reproductible avec mention de la source et des limites méthodologiques
+</footer>
+
+</body>
+</html>
