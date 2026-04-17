@@ -166,6 +166,7 @@
 
     .hero-title {
       font-family: 'Orbitron', sans-serif;
+      margin-top: 150px;
       font-weight: 900;
       font-size: clamp(2.2rem, 8vw, 5.5rem);
       line-height: 1;
@@ -600,6 +601,13 @@
       opacity: 0;
       z-index: 1;
     }
+
+    .portrait{
+      width:max(40%, 300px);
+      margin-top: 40px;
+      filter: grayscale(0.5) contrast(0.8) brightness(0.7) drop-shadow(0 0 10px var(--sand-light));
+      border-radius: 2%;
+    }
   </style>
 </head>
 <body>
@@ -724,7 +732,7 @@
     <div class="planet-deco"></div>
 
     <p class="hero-eyebrow">⬡ SECTOR 7 — ARCHIVES INTERSTELLAIRES ⬡</p>
-    <h1 class="hero-title">DARKSATHILI</h1>
+    <h1 class="hero-title">DARKSATHILI</h1>    
     <p class="hero-subtitle">Code Transmissions</p>
     <p class="hero-desc">
       Archives des expériences computationnelles.<br/>
@@ -738,6 +746,7 @@
         ↓ Consulter les Archives
       </a>
     </div>
+    <img src="darksathili.png" alt="darksathili portrait" class="portrait"/>
 
     <div class="scroll-indicator">SCROLL</div>
   </section>
