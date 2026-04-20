@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide Robot Tondeuse 2026 — Pour Marc Defoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert-fonce: #1a2e1a;
+    --vert-moyen: #2d4a2d;
+    --vert-clair: #4a7a4a;
+    --vert-tendre: #7ab87a;
+    --or: #c9a84c;
+    --or-clair: #e8c96a;
+    --creme: #f8f4ec;
+    --creme-fonce: #ede8db;
+    --brun: #6b4c2a;
+    --blanc: #fefcf8;
+    --texte: #1e2a1e;
+    --gris: #8a9a8a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--creme);
+    color: var(--texte);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ──────────────────────────────────── */
+  .hero {
+    background: var(--vert-fonce);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(74,122,74,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,168,76,0.12) 0%, transparent 50%);
+  }
+
+  .hero-grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    overflow: hidden;
+  }
+
+  .hero-grass svg { width: 100%; height: 100%; }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(201,168,76,0.5);
+    color: var(--or-clair);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 300;
+    color: var(--creme);
+    line-height: 1.1;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s 0.15s ease both;
+  }
+
+  .hero h1 em {
+    color: var(--or-clair);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(248,244,236,0.6);
+    margin-top: 1.2rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  .hero-for {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeDown 0.8s 0.45s ease both;
+  }
+
+  .hero-for-line { width: 40px; height: 1px; background: var(--or); }
+
+  .hero-for span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--or-clair);
+    font-style: italic;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.5;
+    animation: pulse 2s infinite;
+  }
+
+  .scroll-hint span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--creme);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--creme), transparent);
+  }
+
+  /* ─── NAV STICKY ───────────────────────────── */
+  .nav-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26,46,26,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 52px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-inner::-webkit-scrollbar { display: none; }
+
+  .nav-inner a {
+    text-decoration: none;
+    color: rgba(248,244,236,0.55);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.2s;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .nav-inner a:hover { color: var(--or-clair); }
+
+  /* ─── SECTIONS ─────────────────────────────── */
+  section { padding: 5rem 2rem; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--vert-fonce);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { color: var(--vert-clair); font-style: italic; }
+
+  .lead {
+    font-size: 1.05rem;
+    color: #4a5a4a;
+    max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── INTRO DIAGNOSTIC ────────────────────── */
+  #diagnostic { background: var(--blanc); }
+
+  .diag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: rgba(74,122,74,0.15);
+    border: 1px solid rgba(74,122,74,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .diag-card {
+    background: var(--blanc);
+    padding: 2rem 1.8rem;
+    transition: background 0.2s;
+  }
+
+  .diag-card:hover { background: var(--creme); }
+
+  .diag-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .diag-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--vert-fonce);
+    margin-bottom: 0.5rem;
+  }
+
+  .diag-card p {
+    font-size: 0.88rem;
+    color: #5a6a5a;
+    line-height: 1.6;
+  }
+
+  /* ─── TECHNOS ───────────────────────────────── */
+  #technos { background: var(--vert-fonce); }
+  #technos .section-title { color: var(--creme); }
+  #technos .section-label { color: var(--or); }
+  #technos .lead { color: rgba(248,244,236,0.6); }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tech-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+
+  .tech-card:hover {
+    border-color: rgba(201,168,76,0.6);
+    transform: translateY(-3px);
+  }
+
+  .tech-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -1px;
+    right: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    color: var(--or);
+    letter-spacing: 0.1em;
+    background: var(--vert-fonce);
+    padding: 0 0.4rem;
+  }
+
+  .tech-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--or-clair);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+  }
+
+  .tech-card p {
+    font-size: 0.9rem;
+    color: rgba(248,244,236,0.65);
+    line-height: 1.7;
+  }
+
+  .tech-verdict {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1px;
+  }
+
+  .tech-verdict.must { background: rgba(201,168,76,0.15); color: var(--or-clair); }
+  .tech-verdict.nice { background: rgba(74,122,74,0.2); color: var(--vert-tendre); }
+  .tech-verdict.warn { background: rgba(180,80,50,0.15); color: #e8a070; }
+
+  /* ─── COMPARATIF ─────────────────────────────── */
+  #comparatif { background: var(--creme-fonce); }
+
+  .comp-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(74,122,74,0.2);
+    border-radius: 2px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  thead tr {
+    background: var(--vert-fonce);
+  }
+
+  thead th {
+    padding: 1.2rem 1.2rem;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--creme);
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+
+  thead th.highlight-col {
+    background: var(--vert-moyen);
+    color: var(--or-clair);
+  }
+
+  thead th:first-child { color: var(--gris); font-size: 0.7rem; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(74,122,74,0.1);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: rgba(74,122,74,0.05); }
+
+  tbody td {
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem;
+    color: #3a4a3a;
+    border-right: 1px solid rgba(74,122,74,0.08);
+    vertical-align: top;
+  }
+
+  tbody td:first-child {
+    font-weight: 500;
+    color: var(--vert-fonce);
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+  }
+
+  tbody td.highlight-col {
+    background: rgba(74,122,74,0.06);
+    font-weight: 500;
+    color: var(--vert-fonce);
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 1px;
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .badge-green { background: rgba(74,122,74,0.15); color: #2d6a2d; }
+  .badge-gold { background: rgba(201,168,76,0.15); color: #8a6020; }
+  .badge-warn { background: rgba(180,80,50,0.12); color: #8a3a1a; }
+  .badge-gray { background: rgba(100,120,100,0.1); color: #5a6a5a; }
+
+  .winner-flag {
+    display: inline-block;
+    background: var(--or);
+    color: var(--vert-fonce);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+
+  /* ─── OUTIL INTERACTIF ─────────────────────── */
+  #outil { background: var(--blanc); }
+
+  .quiz-wrap {
+    background: var(--creme);
+    border: 1px solid rgba(74,122,74,0.2);
+    border-radius: 2px;
+    padding: 2.5rem;
+    max-width: 760px;
+  }
+
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; animation: fadeIn 0.4s ease; }
+
+  .quiz-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--vert-fonce);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .quiz-opt {
+    background: var(--blanc);
+    border: 1px solid rgba(74,122,74,0.25);
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    color: var(--texte);
+    line-height: 1.5;
+    border-radius: 1px;
+  }
+
+  .quiz-opt:hover {
+    border-color: var(--vert-clair);
+    background: rgba(74,122,74,0.05);
+  }
+
+  .quiz-opt.selected {
+    border-color: var(--or);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .quiz-opt .opt-icon { font-size: 1.4rem; display: block; margin-bottom: 0.4rem; }
+  .quiz-opt strong { display: block; margin-bottom: 0.2rem; color: var(--vert-fonce); }
+
+  .quiz-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--vert-fonce);
+    color: var(--creme);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--vert-moyen); }
+  .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid rgba(100,130,100,0.3);
+    padding: 0.75rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--vert-clair); color: var(--vert-clair); }
+
+  .quiz-progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 2rem;
+  }
+
+  .quiz-dot {
+    width: 24px;
+    height: 3px;
+    background: rgba(74,122,74,0.2);
+    transition: background 0.3s;
+  }
+
+  .quiz-dot.done { background: var(--vert-clair); }
+  .quiz-dot.active { background: var(--or); }
+
+  .result-box {
+    display: none;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .result-box.show { display: block; }
+
+  .result-header {
+    background: var(--vert-fonce);
+    color: var(--creme);
+    padding: 2rem;
+    margin-bottom: 0;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .result-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 0.3rem;
+  }
+
+  .result-header .result-sub {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .result-body {
+    background: var(--blanc);
+    border: 1px solid rgba(74,122,74,0.2);
+    border-top: none;
+    padding: 2rem;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .result-score {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .result-pill {
+    padding: 0.4rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .result-pill.match { background: rgba(74,122,74,0.15); color: #2d6a2d; border: 1px solid rgba(74,122,74,0.3); }
+  .result-pill.price { background: rgba(201,168,76,0.15); color: #8a6020; border: 1px solid rgba(201,168,76,0.3); }
+  .result-pill.caution { background: rgba(180,80,50,0.12); color: #8a3a1a; border: 1px solid rgba(180,80,50,0.2); }
+
+  .result-why {
+    font-size: 0.93rem;
+    color: #4a5a4a;
+    line-height: 1.75;
+  }
+
+  .result-why strong { color: var(--vert-fonce); }
+
+  .reset-btn {
+    margin-top: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--gris);
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+    text-decoration: underline;
+  }
+
+  /* ─── CHECKLIST ACHAT ─────────────────────── */
+  #checklist { background: var(--creme-fonce); }
+
+  .check-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .check-group h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--vert-fonce);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(74,122,74,0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .check-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(74,122,74,0.08);
+    cursor: pointer;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid rgba(74,122,74,0.4);
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--vert-clair);
+    border-color: var(--vert-clair);
+  }
+
+  .check-item.checked .check-box::after {
+    content: '✓';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+  }
+
+  .check-item.checked span { text-decoration: line-through; color: var(--gris); }
+
+  .check-item span {
+    font-size: 0.88rem;
+    color: #3a4a3a;
+    line-height: 1.5;
+  }
+
+  .check-counter {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--or);
+    margin-left: auto;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ─── MOTS D'EXPERT ──────────────────────────── */
+  #conseils { background: var(--vert-fonce); }
+  #conseils .section-title { color: var(--creme); }
+  #conseils .section-label { color: var(--or); }
+
+  .tips-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip {
+    padding: 1.8rem;
+    border-left: 2px solid rgba(201,168,76,0.3);
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.2s;
+  }
+
+  .tip:hover { border-color: var(--or); }
+
+  .tip-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--or-clair);
+    margin-bottom: 0.6rem;
+    font-weight: 400;
+  }
+
+  .tip p {
+    font-size: 0.88rem;
+    color: rgba(248,244,236,0.6);
+    line-height: 1.7;
+  }
+
+  /* ─── VERDICT FINAL ──────────────────────────── */
+  #verdict { background: var(--blanc); }
+
+  .verdict-card {
+    border: 2px solid var(--or);
+    padding: 3rem;
+    max-width: 820px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  .verdict-card::before {
+    content: '★ VERDICT EXPERT';
+    position: absolute;
+    top: -1px;
+    left: 2rem;
+    background: var(--or);
+    color: var(--vert-fonce);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.3rem 0.9rem;
+    letter-spacing: 0.15em;
+    transform: translateY(-50%);
+  }
+
+  .verdict-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 300;
+    color: var(--vert-fonce);
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .verdict-main strong { color: var(--vert-clair); font-weight: 600; }
+
+  .verdict-body {
+    font-size: 0.92rem;
+    color: #4a5a4a;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .verdict-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 540px) { .verdict-items { grid-template-columns: 1fr; } }
+
+  .verdict-item {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    font-size: 0.87rem;
+    color: #3a4a3a;
+  }
+
+  .verdict-item::before {
+    content: attr(data-icon);
+    flex-shrink: 0;
+    font-size: 1rem;
+    margin-top: 0.1rem;
+  }
+
+  /* ─── FOOTER ─────────────────────────────────── */
+  footer {
+    background: var(--vert-fonce);
+    color: rgba(248,244,236,0.35);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.75rem;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  footer strong { color: rgba(248,244,236,0.6); }
+
+  /* ─── ANIMATIONS ─────────────────────────────── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ────────────────────────────── */
+  @media (max-width: 700px) {
+    section { padding: 3.5rem 1.2rem; }
+    .verdict-card { padding: 2rem 1.5rem; }
+    .quiz-wrap { padding: 1.5rem; }
+    .hero h1 { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge">Guide Expert · Robot Tondeuse · 2026</div>
+  <h1>Choisir son robot<br>tondeuse en <em>toute</em><br>connaissance</h1>
+  <p class="hero-sub">1 000 – 2 000 m² · Terrain irrégulier · Sans fil périmétrique</p>
+  <div class="hero-for">
+    <div class="hero-for-line"></div>
+    <span>Préparé pour Marc Defoin</span>
+    <div class="hero-for-line"></div>
+  </div>
+  <div class="scroll-hint">
+    <span>Explorer</span>
+    <div class="scroll-arrow"></div>
+  </div>
+  <div class="hero-grass">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,60 C120,20 200,100 320,60 C440,20 520,90 640,55 C760,20 840,85 960,50 C1080,15 1160,80 1280,45 C1360,25 1420,70 1440,55 L1440,120 L0,120 Z" fill="#2d4a2d" opacity="0.5"/>
+      <path d="M0,80 C100,40 180,100 300,70 C420,40 500,95 620,65 C740,35 820,90 940,60 C1060,30 1140,85 1260,55 C1360,30 1420,75 1440,65 L1440,120 L0,120 Z" fill="#3a5e3a" opacity="0.7"/>
+      <path d="M0,90 C80,60 160,105 280,80 C400,55 480,100 600,75 C720,50 800,95 920,70 C1040,45 1120,90 1240,65 C1360,40 1420,85 1440,75 L1440,120 L0,120 Z" fill="#4a7a4a" opacity="0.5"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ NAV ═══════════════════════════════════════════ -->
+<nav class="nav-sticky">
+  <div class="nav-inner">
+    <a href="#diagnostic">Diagnostic</a>
+    <a href="#technos">Technologies</a>
+    <a href="#comparatif">Comparatif</a>
+    <a href="#outil">Mon choix</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#conseils">Conseils</a>
+    <a href="#verdict">Verdict</a>
+  </div>
+</nav>
+
+<!-- ═══ DIAGNOSTIC ════════════════════════════════════ -->
+<section id="diagnostic">
+  <div class="container">
+    <p class="section-label reveal">Profil terrain</p>
+    <h2 class="section-title reveal">Comprendre <em>votre situation</em> avant tout</h2>
+    <p class="lead reveal">1 000 à 2 000 m² avec quelques pentes et irrégularités : c'est précisément la zone où les choix technologiques font la vraie différence. Voici les 4 enjeux clés de votre profil.</p>
+    <div class="diag-grid reveal">
+      <div class="diag-card">
+        <span class="diag-icon">📐</span>
+        <h3>Surface : zone charnière</h3>
+        <p>Entre 1 000 et 2 000 m², vous êtes dans une zone où le modèle d'entrée de gamme (1 500 m²) peut suffire mais se retrouve à la limite. En cas de pelouse dense ou de tonte moins fréquente, la version 3 000 m² offre davantage de marge.</p>
+      </div>
+      <div class="diag-card">
+        <span class="diag-icon">⛰️</span>
+        <h3>Pentes : le facteur décisif</h3>
+        <p>Les irrégularités et pentes nécessitent impérativement la traction intégrale AWD (4 roues motrices) et une suspension adaptative. Un robot 2 roues motrices perdra grip sur pelouse humide ou en pente.</p>
+      </div>
+      <div class="diag-card">
+        <span class="diag-icon">🛰️</span>
+        <h3>Navigation : sans câble obligatoire</h3>
+        <p>Oubliez le câble périphérique à enterrer sur 100–200 m de terrain. La navigation LiDAR + IA ou RTK est la seule solution viable et confortable pour votre configuration.</p>
+      </div>
+      <div class="diag-card">
+        <span class="diag-icon">💶</span>
+        <h3>Budget : investissement rationnel</h3>
+        <p>Un robot de qualité pour ce type de terrain se situe entre 1 800 € et 2 700 €. C'est un achat pour 10–15 ans. Rapporté à l'usage, c'est 15–25 €/mois d'autonomie totale de tonte.</p>
+      </div>
+    </div>
+
+    <!-- Alerte version 1500 vs 3000 -->
+    <div class="reveal" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.3); padding: 1.5rem 2rem; border-left: 3px solid var(--or); max-width: 720px;">
+      <p style="font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--or); margin-bottom:0.5rem;">⚠ Point critique</p>
+      <p style="font-size:0.92rem; color:#3a4a3a; line-height:1.7;">Si votre terrain dépasse <strong>1 200 m² réels</strong> (hors allées, massifs, bâtiments), visez directement le modèle <strong>3 000 m²</strong>. Les modèles sont dimensionnés avec marges, et la version 1 500 m² bride aussi la puissance de coupe à 88W contre 165W.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TECHNOS ═══════════════════════════════════════ -->
+<section id="technos">
+  <div class="container">
+    <p class="section-label reveal">Décrypter les fiches techniques</p>
+    <h2 class="section-title reveal">Les technologies qui <em>comptent vraiment</em></h2>
+    <p class="lead reveal">Le marketing des robots tondeuses est dense. Voici ce qui est réellement important, ce qui est anecdotique, et ce qui peut être un piège.</p>
+    <div class="tech-grid">
+      <div class="tech-card reveal" data-num="01">
+        <h3>LiDAR 360°</h3>
+        <p>Capteur laser qui scanne l'environnement en continu. Génère une carte 3D précise à ±1 cm, fiable de nuit comme de jour, sous les arbres et sans dépendre du GPS. C'est la colonne vertébrale de toute navigation sans câble sérieuse.</p>
+        <span class="tech-verdict must">Indispensable</span>
+      </div>
+      <div class="tech-card reveal" data-num="02">
+        <h3>AWD 4 roues motrices</h3>
+        <p>4 moteurs indépendants avec contrôle de couple sur chaque roue. La différence avec le 2 roues motrices se fait sentir dès 15% de pente, sur pelouse humide, et en terrain irrégulier. Pour votre profil, c'est non négociable.</p>
+        <span class="tech-verdict must">Indispensable</span>
+      </div>
+      <div class="tech-card reveal" data-num="03">
+        <h3>RTK / NetRTK</h3>
+        <p>Correction de signal satellite centimétrique. Permet une précision absolue même sous une canopée dense ou par temps nuageux. La version 1 500 m² du LUBA 3 n'a pas le NetRTK — seules les versions 3 000 et 5 000 m² l'intègrent.</p>
+        <span class="tech-verdict nice">Très utile (jardins arborés)</span>
+      </div>
+      <div class="tech-card reveal" data-num="04">
+        <h3>Vision IA double caméra</h3>
+        <p>Détection d'obstacles par machine learning. Le LUBA 3 reconnaît plus de 300 types d'objets (jouets, animaux, tuyaux). Compense les angles morts du LiDAR pour les petits obstacles bas. La puce IA embarquée (10 TOPS) adapte aussi la vitesse à la densité d'herbe.</p>
+        <span class="tech-verdict must">Indispensable</span>
+      </div>
+      <div class="tech-card reveal" data-num="05">
+        <h3>Gestion multi-zones</h3>
+        <p>Tondre plusieurs zones séparées (devant/derrière la maison, jardin séparé par une allée) en une seule configuration. Le LUBA 3 gère jusqu'à 50 zones. Le Dreame A3 AWD Pro en gère moins. Important si votre terrain n'est pas monobloc.</p>
+        <span class="tech-verdict nice">Important si terrain fragmenté</span>
+      </div>
+      <div class="tech-card reveal" data-num="06">
+        <h3>Puissance de coupe (W)</h3>
+        <p>Souvent sous-estimée. 88W (version 1 500 m²) vs 165W (version 3 000 m²) : la différence se ressent sur herbe dense, non tondue depuis 2 semaines, ou humide. Pour un terrain de 1 500–2 000 m² touffu, la version 3 000 m² est préférable.</p>
+        <span class="tech-verdict warn">Attention aux versions bridées</span>
+      </div>
+      <div class="tech-card reveal" data-num="07">
+        <h3>Mode DropMow</h3>
+        <p>Fonctionnalité exclusive Mammotion : poser le robot n'importe où sur une zone non cartographiée (chez un voisin, zone temporaire) et le laisser tondre sans configuration préalable. Très pratique, absent chez Dreame.</p>
+        <span class="tech-verdict nice">Bonus utile</span>
+      </div>
+      <div class="tech-card reveal" data-num="08">
+        <h3>Connectivité 4G & app</h3>
+        <p>Permet de programmer et surveiller depuis n'importe où. La 4G intégrée 3 ans chez Mammotion est un plus. L'application est principalement en anglais mais s'améliore en français. Dreame propose une app plus intuitive sur ce point.</p>
+        <span class="tech-verdict warn">App Mammotion encore en anglais</span>
+      </div>
+      <div class="tech-card reveal" data-num="09">
+        <h3>Batterie & autonomie</h3>
+        <p>Le LUBA 3 AWD couvre 400–500 m²/h selon les versions. Une session de 135 min couvre 800–1 000 m² net. Sur 2 000 m², comptez 2–3 sessions par semaine ou une journée complète via le retour automatique à la base pour recharge.</p>
+        <span class="tech-verdict nice">Vérifier les cycles hebdomadaires</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPARATIF ════════════════════════════════════ -->
+<section id="comparatif">
+  <div class="container">
+    <p class="section-label reveal">Les 3 finalistes</p>
+    <h2 class="section-title reveal">Comparatif <em>objectif</em> 2026</h2>
+    <p class="lead reveal">Trois modèles méritent votre attention pour ce profil de terrain. Analyse technique réelle, sans argument commercial.</p>
+    <div class="comp-table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Critère</th>
+            <th class="highlight-col">LUBA 3 AWD 3000 <span class="winner-flag">Top pick</span></th>
+            <th>LUBA 3 AWD 1500</th>
+            <th>Dreame A3 AWD Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prix indicatif</td>
+            <td class="highlight-col"><strong>2 699 €</strong></td>
+            <td>1 999 – 2 299 €</td>
+            <td>env. 2 200 – 2 500 €</td>
+          </tr>
+          <tr>
+            <td>Surface recommandée</td>
+            <td class="highlight-col">jusqu'à 3 000 m²</td>
+            <td>jusqu'à 1 500 m²</td>
+            <td>jusqu'à 2 500 m²</td>
+          </tr>
+          <tr>
+            <td>Navigation</td>
+            <td class="highlight-col"><span class="badge badge-gold">Tri-Fusion LiDAR + RTK + IA</span></td>
+            <td><span class="badge badge-green">LiDAR + IA Vision</span></td>
+            <td><span class="badge badge-green">LiDAR + 2 caméras HDR</span></td>
+          </tr>
+          <tr>
+            <td>RTK / NetRTK</td>
+            <td class="highlight-col">✅ NetRTK inclus 3 ans</td>
+            <td>❌ Absent</td>
+            <td>❌ Pas de RTK (LiDAR pur)</td>
+          </tr>
+          <tr>
+            <td>Traction</td>
+            <td class="highlight-col">AWD 4 moteurs indépendants</td>
+            <td>AWD 4 moteurs indépendants</td>
+            <td>AWD 4 moteurs</td>
+          </tr>
+          <tr>
+            <td>Pente max</td>
+            <td class="highlight-col">80% (38,6°)</td>
+            <td>80% (38,6°)</td>
+            <td>80% (38,6°)</td>
+          </tr>
+          <tr>
+            <td>Puissance de coupe</td>
+            <td class="highlight-col"><span class="badge badge-gold">2 × 165W</span></td>
+            <td><span class="badge badge-warn">2 × 88W</span></td>
+            <td><span class="badge badge-green">Compétitif</span></td>
+          </tr>
+          <tr>
+            <td>Rendement horaire</td>
+            <td class="highlight-col">jusqu'à 500 m²/h</td>
+            <td>jusqu'à 400 m²/h</td>
+            <td>jusqu'à 450 m²/h</td>
+          </tr>
+          <tr>
+            <td>Franchissement obstacles</td>
+            <td class="highlight-col">8 cm</td>
+            <td>8 cm</td>
+            <td>5,5 cm</td>
+          </tr>
+          <tr>
+            <td>Zones gérées</td>
+            <td class="highlight-col">jusqu'à 50</td>
+            <td>jusqu'à 15</td>
+            <td>Moins (non précisé)</td>
+          </tr>
+          <tr>
+            <td>Installation RTK</td>
+            <td class="highlight-col"><span class="badge badge-warn">Antenne à poser (optionnelle)</span></td>
+            <td><span class="badge badge-green">Sans antenne</span></td>
+            <td><span class="badge badge-gold">Sans antenne ni balise</span></td>
+          </tr>
+          <tr>
+            <td>Mode DropMow</td>
+            <td class="highlight-col">✅ Oui</td>
+            <td>✅ Oui</td>
+            <td>❌ Non</td>
+          </tr>
+          <tr>
+            <td>Application</td>
+            <td class="highlight-col"><span class="badge badge-warn">Surtout anglais (FR en cours)</span></td>
+            <td><span class="badge badge-warn">Surtout anglais</span></td>
+            <td><span class="badge badge-green">Plus intuitive</span></td>
+          </tr>
+          <tr>
+            <td>Garantie</td>
+            <td class="highlight-col">3 ans</td>
+            <td>3 ans</td>
+            <td>2 ans</td>
+          </tr>
+          <tr>
+            <td>Poids</td>
+            <td class="highlight-col">19 kg</td>
+            <td>~17 kg</td>
+            <td>23,9 kg</td>
+          </tr>
+          <tr>
+            <td>Certification</td>
+            <td class="highlight-col">IPX6</td>
+            <td>IPX6</td>
+            <td>IPX6</td>
+          </tr>
+          <tr>
+            <td>Réglage hauteur</td>
+            <td class="highlight-col">25 – 70 mm</td>
+            <td>25 – 70 mm</td>
+            <td>25 – 65 mm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="reveal" style="margin-top:1rem; font-size:0.78rem; color:var(--gris); font-family:'Space Mono',monospace;">Prix relevés en avril 2026. Promo fréquentes sur le site officiel Mammotion (jusqu'à -300 €).</p>
+  </div>
+</section>
+
+<!-- ═══ OUTIL INTERACTIF ══════════════════════════════ -->
+<section id="outil">
+  <div class="container">
+    <p class="section-label reveal">Outil de décision</p>
+    <h2 class="section-title reveal">Trouvez <em>votre</em> modèle idéal</h2>
+    <p class="lead reveal">Répondez à ces 5 questions pour obtenir une recommandation personnalisée et argumentée.</p>
+
+    <div class="quiz-wrap reveal">
+      <div class="quiz-progress" id="quizProgress">
+        <div class="quiz-dot active"></div>
+        <div class="quiz-dot"></div>
+        <div class="quiz-dot"></div>
+        <div class="quiz-dot"></div>
+        <div class="quiz-dot"></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="quiz-step active" data-step="1">
+        <p class="quiz-q">Quelle est la surface réelle à tondre (hors allées, massifs, terrasse) ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-val="s_small" onclick="selectOpt(this)">
+            <span class="opt-icon">🌱</span>
+            <strong>800 – 1 200 m²</strong>
+            Le modèle 1 500 m² peut suffire
+          </button>
+          <button class="quiz-opt" data-val="s_large" onclick="selectOpt(this)">
+            <span class="opt-icon">🌳</span>
+            <strong>1 200 – 2 000 m²</strong>
+            Viser le modèle 3 000 m²
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="quiz-step" data-step="2">
+        <p class="quiz-q">Comment évaluez-vous les pentes de votre terrain ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-val="p_light" onclick="selectOpt(this)">
+            <span class="opt-icon">〰️</span>
+            <strong>Légères (< 20%)</strong>
+            Quelques ondulations, terrain quasi plat
+          </button>
+          <button class="quiz-opt" data-val="p_medium" onclick="selectOpt(this)">
+            <span class="opt-icon">📈</span>
+            <strong>Modérées (20–40%)</strong>
+            Déclivité notable, terrain accidenté
+          </button>
+          <button class="quiz-opt" data-val="p_strong" onclick="selectOpt(this)">
+            <span class="opt-icon">⛰️</span>
+            <strong>Fortes (> 40%)</strong>
+            Vraies pentes, traverser des buttes
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="quiz-step" data-step="3">
+        <p class="quiz-q">Votre jardin est-il bien exposé (peu d'arbres, pas de murs enclavants) ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-val="e_open" onclick="selectOpt(this)">
+            <span class="opt-icon">☀️</span>
+            <strong>Ouvert / bien exposé</strong>
+            Peu d'ombrage, signal GPS clair
+          </button>
+          <button class="quiz-opt" data-val="e_mixed" onclick="selectOpt(this)">
+            <span class="opt-icon">🌳</span>
+            <strong>Partiellement arboré</strong>
+            Quelques arbres ou murs, zones d'ombre
+          </button>
+          <button class="quiz-opt" data-val="e_dense" onclick="selectOpt(this)">
+            <span class="opt-icon">🌲</span>
+            <strong>Dense / enclavé</strong>
+            Sous canopée, haies hautes, signal dégradé
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="quiz-step" data-step="4">
+        <p class="quiz-q">Votre terrain est-il en un seul tenant ou fragmenté (zones séparées) ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-val="z_single" onclick="selectOpt(this)">
+            <span class="opt-icon">◻️</span>
+            <strong>Un seul espace</strong>
+            Jardin d'un seul bloc
+          </button>
+          <button class="quiz-opt" data-val="z_multi" onclick="selectOpt(this)">
+            <span class="opt-icon">⊞</span>
+            <strong>Plusieurs zones</strong>
+            Jardin avant/arrière, zones séparées par allée
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="quiz-step" data-step="5">
+        <p class="quiz-q">Quelle est votre priorité principale ?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-val="prio_perf" onclick="selectOpt(this)">
+            <span class="opt-icon">🏆</span>
+            <strong>Performances maximales</strong>
+            Le meilleur possible, prix secondaire
+          </button>
+          <button class="quiz-opt" data-val="prio_simple" onclick="selectOpt(this)">
+            <span class="opt-icon">🎯</span>
+            <strong>Simplicité d'installation</strong>
+            Pas d'antenne à poser, configuration rapide
+          </button>
+          <button class="quiz-opt" data-val="prio_price" onclick="selectOpt(this)">
+            <span class="opt-icon">💡</span>
+            <strong>Meilleur rapport qualité/prix</strong>
+            Efficace sans surpayer
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-nav">
+        <button class="btn-secondary" id="btnBack" onclick="quizBack()" style="display:none">← Retour</button>
+        <button class="btn-primary" id="btnNext" onclick="quizNext()" disabled>Suivant →</button>
+        <span id="stepCounter" style="font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--gris); margin-left:auto;">1 / 5</span>
+      </div>
+
+      <!-- Résultat -->
+      <div class="result-box" id="resultBox">
+        <div class="result-header">
+          <div class="result-sub">Recommandation personnalisée</div>
+          <h3 id="resTitle">—</h3>
+        </div>
+        <div class="result-body">
+          <div class="result-score" id="resScore"></div>
+          <p class="result-why" id="resWhy"></p>
+        </div>
+        <button class="reset-btn" onclick="quizReset()">↺ Recommencer le questionnaire</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHECKLIST ACHAT ══════════════════════════════ -->
+<section id="checklist">
+  <div class="container">
+    <p class="section-label reveal">Avant d'acheter</p>
+    <h2 class="section-title reveal">Checklist <em>complète</em> d'achat</h2>
+    <p class="lead reveal">Cochez chaque point avant de valider votre commande. Cliquez pour cocher.</p>
+    <div class="check-grid reveal">
+      <div class="check-group">
+        <h3>🔍 Votre terrain</h3>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Mesuré la surface réelle tondue (hors allées, massifs, terrasse)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Estimé la pente maximale de votre terrain (appli de mesure de pente sur smartphone)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Identifié les zones séparées (jardin avant, jardin arrière, etc.)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Repéré les obstacles fixes : arbres, massifs, bassin, escaliers</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Vérifié la couverture 4G sur votre terrain (test signal téléphone)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Identifié l'emplacement de la base de charge (secteur 230V à proximité)</span>
+        </div>
+      </div>
+      <div class="check-group">
+        <h3>🛒 Avant commande</h3>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Comparé le prix officiel Mammotion vs Amazon (promos fréquentes jusqu'à -300 €)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Vérifié l'inclusion ou non du support de lavage dans l'offre</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Confirmé que le NetRTK est bien gratuit à vie (annonce officielle Mammotion 2026)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Lu les conditions de garantie 3 ans et de SAV France</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Téléchargé l'application Mammotion pour tester l'interface avant achat</span>
+        </div>
+      </div>
+      <div class="check-group">
+        <h3>⚙️ À la réception</h3>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Choisi l'emplacement de la base (à l'ombre, sol plat, accès facile pour le robot)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Nettoyé la zone de passage (cailloux > 5 cm, branches tombées)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Effectué le premier mappage par temps sec (meilleurs résultats de cartographie)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Configuré les zones d'exclusion (massifs, bassin, bac à sable)</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Programmé un planning de tonte hebdomadaire adapté à la saison</span>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <span>Noté le planning de remplacement des lames (tous les 2–3 mois en saison)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONSEILS ══════════════════════════════════════ -->
+<section id="conseils">
+  <div class="container">
+    <p class="section-label reveal">Retours d'expérience</p>
+    <h2 class="section-title reveal">Les 8 conseils <em>d'un expert</em></h2>
+    <div class="tips-list">
+      <div class="tip reveal">
+        <div class="tip-num">01</div>
+        <h3>Ne pas sous-dimensionner</h3>
+        <p>Mieux vaut prendre le modèle supérieur. Un robot utilisé à 80% de ses capacités durera plus longtemps et offrira de meilleures finitions qu'un modèle poussé à fond chaque semaine.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">02</div>
+        <h3>Le premier mappage est crucial</h3>
+        <p>Faites-le par temps sec, en début de matinée (herbe ni givrée ni trop humide). Un mauvais premier mappage donnera des trajectoires erratiques pendant des semaines.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">03</div>
+        <h3>Tondre fréquemment = mieux tondre</h3>
+        <p>Un robot tondeuse est conçu pour des sessions courtes et fréquentes (3–4x/semaine). Ce mode "mulching continu" est meilleur pour la pelouse qu'une grosse tonte hebdomadaire.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">04</div>
+        <h3>Surveiller les lames</h3>
+        <p>Les lames émoussées tirent l'herbe au lieu de la couper net. Résultat : herbe jaunissante aux pointes. Vérifiez chaque mois, remplacez toutes les 6–8 semaines en pleine saison (env. 15 € le kit).</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">05</div>
+        <h3>Abri de base : investissement utile</h3>
+        <p>L'abri de chargement (env. 80 €) protège la base et prolonge la vie de la batterie en évitant les chocs thermiques soleil/pluie. Non livré de série.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">06</div>
+        <h3>Ne pas s'attendre à la perfection des bordures</h3>
+        <p>Aucun robot autonome ne fait des bordures parfaites. Comptez 15–20 min de finition manuelle par mois pour les bords contre les murs et les massifs. C'est incompressible.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">07</div>
+        <h3>Préparer la pelouse avant livraison</h3>
+        <p>Si la pelouse a du retard, faites une tonte manuelle courte avant la première utilisation du robot. Une herbe de 15 cm+ dès le départ peut bloquer les disques et fausser le mappage initial.</p>
+      </div>
+      <div class="tip reveal">
+        <div class="tip-num">08</div>
+        <h3>Hivernage : sortie en mars</h3>
+        <p>Stocker le robot à l'intérieur d'octobre à mars (gel = endommagé la batterie Li-ion). Rechargez à 60% avant stockage. Ne laissez jamais la batterie se décharger complètement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VERDICT FINAL ═════════════════════════════════ -->
+<section id="verdict">
+  <div class="container">
+    <p class="section-label reveal">Conclusion</p>
+    <h2 class="section-title reveal">Le mot de <em>la fin</em></h2>
+    <div class="verdict-card reveal">
+      <p class="verdict-main">Pour 1 000 à 2 000 m² avec relief, le <strong>Mammotion LUBA 3 AWD 3000</strong> est le choix le plus rationnel en 2026.</p>
+      <p class="verdict-body">
+        Il réunit les deux exigences critiques de votre profil : la traction intégrale AWD pour les irrégularités, et la navigation Tri-Fusion (LiDAR 360° + NetRTK + IA Vision) pour une précision sans câble à enterrer. La puissance de coupe de 2×165W est largement suffisante pour de l'herbe dense ou une tonte espacée. La marge sur la surface (3 000 m² pour 2 000 m² réels) assure une usure modérée et de meilleures finitions.
+        <br><br>
+        Si votre terrain ne dépasse pas 1 200 m² réels, bien exposé, sans zones très arborées, le <strong>LUBA 3 AWD 1500</strong> est suffisant et représente 700 € d'économie. Si l'installation sans aucune antenne est votre priorité absolue, le <strong>Dreame A3 AWD Pro</strong> est une alternative crédible — mais moins mature et avec un franchissement d'obstacles inférieur (5,5 cm vs 8 cm).
+      </p>
+      <div class="verdict-items">
+        <div class="verdict-item" data-icon="✅">Navigation sans câble à enterrer : 0 infrastructure à installer</div>
+        <div class="verdict-item" data-icon="✅">AWD réel : passage assuré sur pentes et terrain humide</div>
+        <div class="verdict-item" data-icon="✅">NetRTK gratuit à vie (annonce officielle 2026)</div>
+        <div class="verdict-item" data-icon="✅">Garantie 3 ans + SAV disponible en France</div>
+        <div class="verdict-item" data-icon="⚠️">Application principalement en anglais (améliorée progressivement)</div>
+        <div class="verdict-item" data-icon="⚠️">Compter 80 € supplémentaires pour l'abri de charge</div>
+        <div class="verdict-item" data-icon="💡">Surveillance des lames : toutes les 6 semaines en saison</div>
+        <div class="verdict-item" data-icon="💡">Promo fréquentes sur mammotion.com (–200 à –400 €)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <strong>Guide Robot Tondeuse 2026</strong> — Préparé pour Marc Defoin<br>
+  Sources : tests Maniaques, NeozOne, Lokan, Journal du Robot, Robot-Tonte.fr · Données vérifiées avril 2026
+</footer>
+
+<script>
+// ─── SCROLL REVEAL ────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// ─── CHECKLIST ────────────────────────────────
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+
+// ─── QUIZ ─────────────────────────────────────
+let step = 1;
+const totalSteps = 5;
+const answers = {};
+
+function selectOpt(btn) {
+  const parent = btn.closest('.quiz-step');
+  parent.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[`q${step}`] = btn.dataset.val;
+  document.getElementById('btnNext').disabled = false;
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll('.quiz-dot');
+  dots.forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    if (i < step - 1) d.classList.add('done');
+    if (i === step - 1) d.classList.add('active');
+  });
+}
+
+function quizNext() {
+  if (!answers[`q${step}`]) return;
+  if (step < totalSteps) {
+    document.querySelector(`[data-step="${step}"]`).classList.remove('active');
+    step++;
+    document.querySelector(`[data-step="${step}"]`).classList.add('active');
+    document.getElementById('btnNext').disabled = true;
+    document.getElementById('btnBack').style.display = 'inline-block';
+    document.getElementById('stepCounter').textContent = `${step} / ${totalSteps}`;
+    // Restore previous answer if any
+    const prev = answers[`q${step}`];
+    if (prev) {
+      const prevBtn = document.querySelector(`[data-step="${step}"] [data-val="${prev}"]`);
+      if (prevBtn) { prevBtn.classList.add('selected'); document.getElementById('btnNext').disabled = false; }
+    }
+    updateDots();
+    if (step === totalSteps) document.getElementById('btnNext').textContent = 'Voir ma recommandation →';
+  } else {
+    showResult();
+  }
+}
+
+function quizBack() {
+  document.querySelector(`[data-step="${step}"]`).classList.remove('active');
+  step--;
+  document.querySelector(`[data-step="${step}"]`).classList.add('active');
+  document.getElementById('btnNext').disabled = false;
+  document.getElementById('btnNext').textContent = 'Suivant →';
+  document.getElementById('stepCounter').textContent = `${step} / ${totalSteps}`;
+  if (step === 1) document.getElementById('btnBack').style.display = 'none';
+  updateDots();
+}
+
+function showResult() {
+  document.querySelector('.quiz-progress').style.display = 'none';
+  document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
+  document.querySelector('.quiz-nav').style.display = 'none';
+
+  const s = answers;
+  let title, pills, why;
+
+  // Analyse des réponses
+  const big = s.q1 === 's_large';
+  const strongSlope = s.q2 === 'p_strong';
+  const dense = s.q3 === 'e_dense';
+  const multiZone = s.q4 === 'z_multi';
+  const simpleInstall = s.q5 === 'prio_simple';
+
+  if (simpleInstall && !strongSlope && !dense) {
+    title = 'Dreame A3 AWD Pro';
+    pills = `<span class="result-pill match">Bonne adéquation</span><span class="result-pill price">~2 200 – 2 500 €</span>`;
+    why = `Vos priorités mettent la <strong>simplicité d'installation en avant</strong>, et votre terrain n'a pas de contraintes extrêmes. Le Dreame A3 AWD Pro est alors pertinent : <strong>pas d'antenne RTK à installer</strong>, navigation LiDAR + double caméra fiable, AWD sur pentes jusqu'à 80%. Son application est plus intuitive que celle de Mammotion. Limite : franchissement d'obstacles de 5,5 cm seulement (vs 8 cm pour le LUBA 3), et pas de mode DropMow.`;
+  } else if (!big && !strongSlope && !dense && !multiZone) {
+    title = 'LUBA 3 AWD 1500';
+    pills = `<span class="result-pill match">Bon rapport</span><span class="result-pill price">~1 999 – 2 299 €</span><span class="result-pill caution">Vérifier surface réelle</span>`;
+    why = `Pour un terrain de moins de 1 200 m² réels, bien exposé, sans pentes fortes ni zones multiples, le <strong>LUBA 3 AWD 1500 est suffisant et économise ~700 €</strong>. LiDAR 360° + IA Vision assure une navigation précise. Attention : sans NetRTK, il sera un peu moins performant sous canopée dense. Puissance de coupe de 88W : suffisante pour une tonte régulière (2×/semaine).`;
+  } else {
+    title = 'LUBA 3 AWD 3000 ★';
+    pills = `<span class="result-pill match">Recommandation principale</span><span class="result-pill price">~2 699 €</span>`;
+    if (dense) pills += `<span class="result-pill caution">NetRTK essentiel pour vous</span>`;
+    why = `Votre profil rassemble ${big ? 'une grande surface, ' : ''}${strongSlope ? 'des pentes marquées, ' : ''}${dense ? 'un jardin arboré/enclavé, ' : ''}${multiZone ? 'des zones multiples, ' : ''}ce qui appelle le modèle le mieux équipé. Le <strong>LUBA 3 AWD 3000</strong> apporte le NetRTK centimétrique (crucial sous canopée), la puissance de coupe maximale à <strong>2×165W</strong>, 50 zones gérables et le franchissement d'obstacles à 8 cm. La marge de 50% sur la surface garantit une usure modérée et une tonte impeccable même en haute saison.`;
+  }
+
+  const box = document.getElementById('resultBox');
+  document.getElementById('resTitle').textContent = title;
+  document.getElementById('resScore').innerHTML = pills;
+  document.getElementById('resWhy').innerHTML = why;
+  box.classList.add('show');
+}
+
+function quizReset() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  step = 1;
+  document.querySelector('.quiz-progress').style.display = 'flex';
+  document.querySelectorAll('.quiz-step').forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
+  document.querySelector('.quiz-nav').style.display = 'flex';
+  document.querySelector(`[data-step="1"]`).classList.add('active');
+  document.querySelector(`[data-step="1"]`).style.display = 'block';
+  document.querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  document.getElementById('btnNext').disabled = true;
+  document.getElementById('btnNext').textContent = 'Suivant →';
+  document.getElementById('btnBack').style.display = 'none';
+  document.getElementById('stepCounter').textContent = '1 / 5';
+  document.getElementById('resultBox').classList.remove('show');
+  updateDots();
+}
+</script>
+</body>
+</html>
