@@ -1176,6 +1176,7 @@
       }
 
       repos.forEach((r, i) => {
+      if(r.name != 'accueil') {
         const card = document.createElement('a');
         card.href = r.html_url;
         card.target = '_blank';
@@ -1208,7 +1209,7 @@
       </div>
     `;
         grid.appendChild(card);
-      });
+      }});
     }
 
     function applyFilters() {
